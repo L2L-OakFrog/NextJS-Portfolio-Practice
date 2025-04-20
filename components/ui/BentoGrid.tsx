@@ -48,10 +48,29 @@ export const BentoGridItem = ({
     spareImg?: string;
   }) => {
   const [copied, setCopied] = useState(false);
-  const hadleCopy = () => {
-    navigator.clipboard.writeText('rafiqahamed.tanim@gmail.com');
-    setCopied(true);
-  }
+  const handleCopy = async () => {
+    debugger
+    try {
+      // Read the current clipboard content
+      const clipboardContent = await navigator.clipboard.readText();
+
+      // Check if the clipboard already contains the email
+      if (clipboardContent === 'rafiqahamed.tanim@gmail.com') {
+        alert('Email is already copied to your clipboard!');
+      } else {
+        // Copy the email to the clipboard
+        await navigator.clipboard.writeText('rafiqahamed.tanim@gmail.com');
+        setCopied(true);
+
+        // Reset the copied state after 2 seconds
+        setTimeout(() => {
+          setCopied(false);
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Failed to copy email: ', error);
+    }
+  };
 
   return (
     <div
@@ -141,7 +160,7 @@ export const BentoGridItem = ({
                 icon={<IoCopyOutline />}
                 position="left"
                 otherClasses="!bg-[#161A31]"
-                handleClick={hadleCopy}
+                handleClick={handleCopy}
               />
             </div>
           )}

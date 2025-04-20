@@ -13,7 +13,7 @@ export default function Home() {
           ]}
         />
         <Hero />
-        <Grid />
+        {/* <Grid /> */}
       </div>
     </main>
   );
