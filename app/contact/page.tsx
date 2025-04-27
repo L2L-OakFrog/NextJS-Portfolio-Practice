@@ -7,7 +7,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-black-100 text-white py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center">Let's Boost Your Campaign Results</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center">Let&apos;s Boost Your Campaign Results</h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact Form - Using FormSubmit.co */}
