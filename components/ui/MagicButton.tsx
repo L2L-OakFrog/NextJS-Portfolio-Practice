@@ -1,4 +1,19 @@
-import React from 'react'
+"use client";
+import React, { useState } from 'react';
+import Lottie from 'react-lottie';
+import animationData from '@/data/confetti.json';
+
+interface MagicButtonProps {
+  title: string;
+  icon: React.ReactNode;
+  position: 'left' | 'right';
+  handleClick?: () => void;
+  otherClasses?: string;
+  copyText?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  showConfetti?: boolean; // New prop to control confetti visibility
+}
 
 const MagicButton = ({
   title,
@@ -6,29 +21,77 @@ const MagicButton = ({
   position,
   handleClick,
   otherClasses,
-}: {
-  title: string;
-  icon: React.ReactNode;
-  position: string;
-  handleClick?: () => void;
-  otherClasses?: string;
-}) => {
+  copyText,
+  type = 'button',
+  disabled = false,
+  showConfetti = false // Default to false
+}: MagicButtonProps) => {
+  const [copied, setCopied] = useState(false);
 
-  /* const {
-    title = String,
-  } = props.information; */
+  const handleCopy = async (text: string) => {
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      console.error('Failed to copy text: ', error);
+    }
+  };
+
+  const handleButtonClick = () => {
+    if (copyText) {
+      handleCopy(copyText);
+    } else if (handleClick) {
+      handleClick();
+    }
+  };
 
   return (
-    <button className="relative inline-flex h-12 w-full overflow-hidden rounded-lg p-[1px] focus:outline-none md:w-60 md:mt-10" onClick={handleClick}>
-      <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-      <span className={`inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg
-             bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2 ${otherClasses}`}>
-        {position === 'left' && icon}
-        {title}
-        {position === 'right' && icon}
-      </span>
-    </button>
-  )
-}
+    <div className="relative">
+      {/* Confetti animation */}
+      {showConfetti && copied && (
+        <div className="absolute -bottom-5 right-0 z-10">
+          <Lottie
+            options={{
+              loop: false,
+              autoplay: true,
+              animationData,
+              rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice'
+              }
+            }}
+            height={100}
+            width={100}
+          />
+        </div>
+      )}
 
-export default MagicButton
+      {/* Button */}
+      <button 
+        className={`relative inline-flex h-12 w-full overflow-hidden rounded-lg p-[1px] focus:outline-none md:w-60 md:mt-10 ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+        onClick={handleButtonClick}
+        type={type}
+        disabled={disabled}
+      >
+        <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+        <span className={`inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2 ${otherClasses}`}>
+          {position === 'left' && icon}
+          {copied && copyText ? 'Copied!' : title}
+          {position === 'right' && icon}
+        </span>
+      </button>
+    </div>
+  );
+};
+
+export default MagicButton;

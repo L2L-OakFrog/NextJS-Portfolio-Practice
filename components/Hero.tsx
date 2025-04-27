@@ -3,10 +3,11 @@ import { Spotlight } from './ui/Spotlight'
 import { TextGenerateEffect } from "./ui/TextGenerateEffect"
 import MagicButton from "./ui/MagicButton"
 import { FaLocationArrow } from "react-icons/fa6"
+import { IoMdMegaphone } from "react-icons/io"
 
 const Hero = () => {
   return (
-    <div className='pb-20 pt-36'>
+    <div className='pb-10 pt-20'>
       <div>
         <Spotlight className='-top-40 -left-10 md:-left-32 md:-top-20 h-screen' fill='white'/>
         <Spotlight className='top-10 left-full h-[80vh] w-[50vw]' fill='purple'/>
@@ -33,14 +34,14 @@ const Hero = () => {
             To maximize your campaign success by delivering high-quality leads and closing deals effectively
           </p>
           
-          <a href="#about">
+          <a href="/campaigns">
             <MagicButton
               /* information={{
                 title: "See My Works"
               }} */
               // title="See My Works"
               title="Check Past Campaigns"
-              icon={<FaLocationArrow />}
+              icon={<IoMdMegaphone />}
               position="right"
             />
           </a>
