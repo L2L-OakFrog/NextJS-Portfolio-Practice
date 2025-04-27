@@ -20,7 +20,7 @@ type AboutItem = {
 const aboutItems: AboutItem[] = [
   {
     title: "Who We Are",
-    description: "TechConnect provides expert telemarketing services for solar, MCA, insurance, and real estate industries.",
+    description: "TechConnect provides expert telemarketing services for solar, MCA, insurance, and real estate industries. With 8 years of telemarketing excellence across multiple industries, We've delivered exceptional results in merchant cash advance, solar energy, home improvement, and Australian government initiatives.",
     className: "md:col-span-2 col-span-3",
     style: {
       background: "linear-gradient(135deg, #1e3a8a 0%, #7e22ce 100%)",
