@@ -118,7 +118,7 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-bold mb-2">Email Us</h3>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                    <p className="text-neutral-300">Sharifanim66@gmail.com</p>
+                    <p className="text-neutral-300 break-all whitespace-normal">Sharifanim66@gmail.com</p>
                     {/* <MagicButton
                       title="Copy"
                       icon={<IoCopyOutline />}
