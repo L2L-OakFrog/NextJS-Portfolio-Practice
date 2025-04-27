@@ -1,20 +1,24 @@
 import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
+import { StatsSection } from "@/components/StatsSection";
 import { FloatingNav } from "@/components/ui/FloatingNav";
-import { FaHome } from "react-icons/fa";
+
+const stats = [
+  { value: "10+", label: "Years Experience" },
+  { value: "450+", label: "Active Clients" },
+  { value: "35%", label: "Average Conversion Boost" },
+  { value: "10+", label: "Daily Deals Closed" },
+];
 
 export default function Home() {
   return (
-    <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto px-5 sm:px-10 ">
-      <div>
-        <FloatingNav
-          navItems={[
-            {name: "Home", link: "/", icon: <FaHome />}
-          ]}
-        />
+    <div className="w-full">
         <Hero />
+        {/* <div className="bg-gradient-to-br from-black/60 to-green-900/30 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/10"> */}
+        <StatsSection stats={stats} className="" />
+                    
+        {/* </div> */}
         {/* <Grid /> */}
       </div>
-    </main>
   );
 }

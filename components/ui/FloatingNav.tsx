@@ -1,81 +1,115 @@
 "use client";
-import React, { useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from "framer-motion";
-import { cn } from "@/utils/cn";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/utils/cn";
+import { FaHome, FaInfoCircle, FaRocket, FaChartLine } from "react-icons/fa";
+import { IoMdMegaphone } from "react-icons/io";
 
 export const FloatingNav = ({
-  navItems,
   className,
 }: {
-  navItems: {
-    name: string;
-    link: string;
-    icon?: JSX.Element;
-  }[];
   className?: string;
 }) => {
+  const pathname = usePathname();
   const { scrollYProgress } = useScroll();
+  const [visible, setVisible] = useState(true);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
-  const [visible, setVisible] = useState(false);
+  // Default navigation items
+  const navItems = [
+    { name: "Home", link: "/", icon: <FaHome size={16} /> },
+    { name: "About", link: "/about", icon: <FaInfoCircle size={16} /> },
+    { name: "Campaigns", link: "/campaigns", icon: <IoMdMegaphone size={16} /> },
+    // { name: "Contact", link: "/contact", icon: <FaInfoCircle size={16} /> },
+    /* { 
+      name: "Campaigns", 
+      link: "/campaigns", 
+      icon: <IoMdMegaphone size={16} />,
+      subItems: [
+        { name: "Solar", link: "/campaigns", icon: <FaRocket size={14} /> },
+        { name: "Insurance", link: "/campaigns/insurance", icon: <FaChartLine size={14} /> }
+      ]
+    } */
+  ];
 
+  // Show/hide on scroll
   useMotionValueEvent(scrollYProgress, "change", (current) => {
-    // Check if current is not undefined and is a number
     if (typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
-
-      if (scrollYProgress.get() < 0.05) {
-        // setVisible(false);
-      } else {
-        if (direction < 0) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
-      }
+      const direction = current - (scrollYProgress.getPrevious() || 0);
+      setVisible(direction < 0 || current < 0.1);
     }
   });
 
+  // Close menu when route changes
+  useEffect(() => {
+    setActiveMenu(null);
+  }, [pathname]);
+
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       <motion.div
-        initial={{
-          opacity: 1,
-          y: -100,
-        }}
-        animate={{
-          y: visible ? 0 : -100,
-          opacity: visible ? 1 : 0,
-        }}
-        transition={{
-          duration: 0.2,
-        }}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
         className={cn(
-          "flex max-w-fit  fixed top-10 inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-full dark:bg-black bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] pr-2 pl-8 py-2  items-center justify-center space-x-4",
+          "fixed top-6 inset-x-0 mx-auto max-w-fit",
+          "bg-black/80 backdrop-blur-md border border-white/10",
+          "rounded-full z-[9999] px-4 py-2 shadow-lg sm:px-6", // Reduced padding on mobile
           className
         )}
       >
-        {navItems.map((navItem: any, idx: number) => (
-          <Link
-            key={`link=${idx}`}
-            href={navItem.link}
-            className={cn(
-              "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
-            )}
-          >
-            <span className="block sm:hidden">{navItem.icon}</span>
-            <span className="hidden sm:block text-sm">{navItem.name}</span>
-          </Link>
-        ))}
-        <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-          <span>Login</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
-        </button>
+        <div className="flex items-center gap-2 sm:gap-4"> {/* Reduced gap on mobile */}
+          {navItems.map((item) => (
+            <div key={item.name} className="relative">
+              <Link
+                href={item.link}
+                onClick={(e) => {
+                  /* if (item.subItems) {
+                    e.preventDefault();
+                    setActiveMenu(activeMenu === item.name ? null : item.name);
+                  } */
+                }}
+                className={cn(
+                  "flex items-center gap-1 text-sm",
+                  "text-neutral-300 hover:text-white transition-colors",
+                  pathname === item.link && "!text-white font-medium",
+                  // item.subItems && "cursor-pointer"
+                )}
+              >
+                {item.icon}
+                {/* Text hidden on mobile, shown on sm+ screens */}
+                <span className="hidden sm:inline">{item.name}</span>
+              </Link>
+
+              {/* Submenu - adjusted for mobile */}
+              {/* {item.subItems && activeMenu === item.name && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute left-0 mt-2 w-48 bg-black/90 backdrop-blur-md rounded-md border border-white/10 shadow-lg z-50"
+                >
+                  {item.subItems.map((subItem) => (
+                    <Link
+                      key={subItem.name}
+                      href={subItem.link}
+                      className={cn(
+                        "flex items-center gap-2 px-4 py-2 text-sm",
+                        "hover:bg-white/10 transition-colors",
+                        pathname === subItem.link && "!text-white font-medium"
+                      )}
+                    >
+                      {subItem.icon}
+                      <span className="hidden sm:inline">{subItem.name}</span>
+                    </Link>
+                  ))}
+                </motion.div>
+              )} */}
+            </div>
+          ))}
+        </div>
       </motion.div>
     </AnimatePresence>
   );
