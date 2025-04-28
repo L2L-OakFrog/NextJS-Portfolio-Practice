@@ -26,7 +26,7 @@ export const TextGenerateEffect = ({
         repeatType: "reverse"
       }
     );
-  }, [scope.current]);
+  }, [animate, wordsArray]);
 
   const renderWords = () => {
     return (

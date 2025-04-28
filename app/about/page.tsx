@@ -165,7 +165,7 @@ export default function AboutPage() {
           <BentoGrid 
             cols={3} 
             gap="md" 
-            className="md:auto-rows-[18rem] auto-rows-[14rem]"
+            className="auto-rows-[26rem]"
           >
             {aboutItems.map((item, i) => (
               <BentoGridItem

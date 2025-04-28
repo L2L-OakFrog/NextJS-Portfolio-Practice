@@ -128,7 +128,7 @@ export default function CampaignsPage() {
           <p>With 8 years of telemarketing excellence across multiple industries, I've delivered exceptional results in merchant cash advance, solar energy, home improvement, and Australian government initiatives.</p>
         </div> */}
         
-        <BentoGrid className="md:auto-rows-[18rem] auto-rows-[16rem]">
+        <BentoGrid className="auto-rows-[25rem]">
           {/* Featured Campaign */}
           {featuredCampaign && (
             <BentoGridItem

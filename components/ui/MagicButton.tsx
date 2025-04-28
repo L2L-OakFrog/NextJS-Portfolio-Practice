@@ -12,7 +12,7 @@ interface MagicButtonProps {
   copyText?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
-  showConfetti?: boolean; // New prop to control confetti visibility
+  showConfetti?: boolean;
 }
 
 const MagicButton = ({
@@ -24,13 +24,13 @@ const MagicButton = ({
   copyText,
   type = 'button',
   disabled = false,
-  showConfetti = false // Default to false
+  showConfetti = false
 }: MagicButtonProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async (text: string) => {
     try {
-      if (navigator.clipboard) {
+      if (typeof navigator !== 'undefined' && navigator.clipboard) {
         await navigator.clipboard.writeText(text);
       } else {
         // Fallback for older browsers
@@ -78,7 +78,6 @@ const MagicButton = ({
         </div>
       )}
 
-      {/* Button */}
       <button 
         className={`relative inline-flex h-12 w-full overflow-hidden rounded-lg p-[1px] focus:outline-none md:w-60 md:mt-10 ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
         onClick={handleButtonClick}
