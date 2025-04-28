@@ -1,5 +1,6 @@
 "use client";
 import MagicButton from "@/components/ui/MagicButton";
+import SimpleSubmitButton from "@/components/ui/SimpleSubmitButton";
 import { FaPaperPlane, FaPhone, FaEnvelope, FaChartLine, FaUsers, FaHandshake } from 'react-icons/fa';
 import { IoCopyOutline } from 'react-icons/io5';
 
@@ -75,11 +76,17 @@ export default function ContactPage() {
                 />
               </div>
 
-              <MagicButton
+              {/* <MagicButton
                 title="Send Message"
                 icon={<FaPaperPlane />}
                 position="right"
                 type="submit"
+                otherClasses="w-full"
+              /> */}
+              <SimpleSubmitButton
+                title="Send Message"
+                icon={<FaPaperPlane />}
+                position="right"
                 otherClasses="w-full"
               />
             </form>
