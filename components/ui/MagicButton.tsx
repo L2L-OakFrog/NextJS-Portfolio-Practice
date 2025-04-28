@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lottie from 'react-lottie';
 import animationData from '@/data/confetti.json';
 
@@ -27,21 +27,26 @@ const MagicButton = ({
   showConfetti = false
 }: MagicButtonProps) => {
   const [copied, setCopied] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleCopy = async (text: string) => {
+    if (!isClient) return;
+    
     try {
-      if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      if (navigator.clipboard) {
         await navigator.clipboard.writeText(text);
       } else {
         // Fallback for older browsers
-        if (typeof document !== 'undefined') {
-          const textArea = document.createElement('textarea');
-          textArea.value = text;
-          document.body.appendChild(textArea);
-          textArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textArea);
-        }
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
       }
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
