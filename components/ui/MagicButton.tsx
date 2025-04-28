@@ -57,7 +57,7 @@ const MagicButton = ({
 
   const handleButtonClick = () => {
     if (copyText) {
-      handleCopy(copyText);
+      // handleCopy(copyText);
     } else if (handleClick) {
       handleClick();
     }
