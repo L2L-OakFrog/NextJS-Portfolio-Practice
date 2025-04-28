@@ -36,15 +36,15 @@ const Hero = () => {
           </p>
           
           <a href="/campaigns">
-            <MagicButton
-              /* information={{
-                title: "See My Works"
-              }} */
+            {/* <MagicButton
+              // information={{
+              //   title: "See My Works"
+              // }}
               // title="See My Works"
               title="Check Past Campaigns"
               icon={<IoMdMegaphone />}
               position="right"
-            />
+            /> */}
           </a>
         </div>
       </div>

@@ -1,13 +1,27 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 
-const World = dynamic(() => import("./Globe").then((m) => m.World), {
-  ssr: false,
-});
+const World = dynamic(
+  () => import("./Globe").then((m) => m.World as React.ComponentType<any>),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center w-full h-full bg-gray-800/50">
+        <div className="animate-pulse text-white">Loading globe...</div>
+      </div>
+    )
+  }
+);
 
 export function GlobeDemo() {
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const globeConfig = {
     pointSize: 4,
     globeColor: "#062056",
@@ -33,7 +47,6 @@ export function GlobeDemo() {
 
   const colors = ["#06b6d4", "#3b82f6", "#6366f1"];
   
-  // Sample arcs data (same as before)
   const sampleArcs = [
     {
         order: 1,
@@ -399,10 +412,18 @@ export function GlobeDemo() {
 
   return (
     <div className="relative w-full h-full">
-      <div className="absolute inset-0 z-0">
-        <World data={sampleArcs} globeConfig={globeConfig} />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10 pointer-events-none" />
+      {isClient ? (
+        <>
+          <div className="absolute inset-0 z-0">
+            <World data={sampleArcs} globeConfig={globeConfig} />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10 pointer-events-none" />
+        </>
+      ) : (
+        <div className="flex items-center justify-center w-full h-full bg-gray-800/50">
+          <div className="animate-pulse text-white">Loading globe...</div>
+        </div>
+      )}
     </div>
   );
 }

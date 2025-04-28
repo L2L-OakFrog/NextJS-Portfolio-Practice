@@ -75,13 +75,13 @@ export default function ContactPage() {
                 />
               </div>
 
-              <MagicButton
+              {/* <MagicButton
                 title="Send Message"
                 icon={<FaPaperPlane />}
                 position="right"
                 type="submit"
                 otherClasses="w-full"
-              />
+              /> */}
             </form>
           </div>
 

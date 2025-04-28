@@ -195,13 +195,13 @@ export default function CampaignsPage() {
                     </div>
                   </div>
                   <div className="mt-auto pt-2">
-                    <MagicButton
+                    {/* <MagicButton
                       title="View Details"
                       icon={<FaArrowRight />}
                       position="right"
                       otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 w-full text-sm"
                       handleClick={campaign.action}
-                    />
+                    /> */}
                   </div>
                 </div>
               }

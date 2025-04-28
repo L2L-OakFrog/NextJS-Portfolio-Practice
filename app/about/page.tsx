@@ -1,13 +1,26 @@
 'use client';
 import { BentoGrid } from "@/components/ui/BentoGrid2";
 import { BentoGridItem } from "@/components/ui/BentoGridItem";
-import { GlobeDemo } from "@/components/ui/GridGlobe";
+import dynamic from "next/dynamic";
 import MagicButton from "@/components/ui/MagicButton";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 import { IoCopyOutline } from "react-icons/io5";
 import { FaLocationArrow, FaCommentAlt } from "react-icons/fa";
 import Link from "next/link";
 import { IoMdMegaphone } from "react-icons/io";
+
+// Dynamically import GlobeDemo with SSR disabled
+const GlobeDemo = dynamic(
+  () => import("@/components/ui/GridGlobe").then((mod) => mod.GlobeDemo as React.ComponentType<any>),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center w-full h-full bg-gray-800/50">
+        <div className="animate-pulse text-white">Loading globe...</div>
+      </div>
+    )
+  }
+);
 
 type AboutItem = {
   title: string;
@@ -48,7 +61,7 @@ const aboutItems: AboutItem[] = [
   {
     title: "Success Metrics",
     description: "Documented campaign results:",
-    className: "md:col-span-3 col-span-3", // Full width on mobile
+    className: "md:col-span-3 col-span-3",
     style: {
       background: "linear-gradient(135deg, #4c1d95 0%, #701a75 100%)",
     },
@@ -70,34 +83,21 @@ const aboutItems: AboutItem[] = [
         </div>
         <div className="mt-auto">
           <Link href="/campaigns" className="block w-full">
-            <MagicButton
+            {/* <MagicButton
               title="View Campaigns"
               icon={<IoMdMegaphone />}
               position="right"
               otherClasses="w-full text-sm"
-            />
+            /> */}
           </Link>
         </div>
       </div>
     ),
   },
-  /* {
-    title: "Global Reach",
-    description: "Serving clients in 25+ countries",
-    className: "md:col-span-2 col-span-3",
-    style: {
-      background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
-    },
-    header: (
-      <div className="absolute inset-0 z-0">
-        <GlobeDemo />
-      </div>
-    ),
-  }, */
   {
     title: "Global Reach",
     description: "Serving clients worldwide with our expert network across 25+ countries",
-    className: "md:col-span-2 col-span-3 relative", // Added relative
+    className: "md:col-span-2 col-span-3 relative",
     style: {
       background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
     },
@@ -106,33 +106,6 @@ const aboutItems: AboutItem[] = [
         <GlobeDemo />
       </div>
     ),
-    /* children: (
-      <div className="relative z-10 h-full flex flex-col justify-between">
-        <div className="bg-black/30 p-4 rounded-lg backdrop-blur-sm">
-          <h3 className="font-bold text-lg text-blue-400">Our Global Presence</h3>
-          <ul className="mt-2 space-y-1 text-sm">
-            <li className="flex items-center gap-2">
-              <span className="text-blue-400">•</span> North America
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="text-blue-400">•</span> Europe
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="text-blue-400">•</span> Asia Pacific
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="text-blue-400">•</span> Middle East
-            </li>
-          </ul>
-        </div>
-        <div className="mt-4 bg-black/30 p-4 rounded-lg backdrop-blur-sm">
-          <p className="text-sm">
-            With offices in 8 major cities and partners in 17 more, we deliver 
-            localized solutions with global expertise.
-          </p>
-        </div>
-      </div>
-    ), */
   },
   {
     title: "Get Started",
