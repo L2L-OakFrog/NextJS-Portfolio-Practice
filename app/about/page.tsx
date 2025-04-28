@@ -1,3 +1,4 @@
+'use client';
 import { BentoGrid } from "@/components/ui/BentoGrid2";
 import { BentoGridItem } from "@/components/ui/BentoGridItem";
 import { GlobeDemo } from "@/components/ui/GridGlobe";
