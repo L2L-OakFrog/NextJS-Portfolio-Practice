@@ -33,7 +33,7 @@ const MagicButton = ({
     setIsClient(true);
   }, []);
 
-  const handleCopy = async (text: string) => {
+ /*  const handleCopy = async (text: string) => {
     if (!isClient) return;
     
     try {
@@ -53,11 +53,11 @@ const MagicButton = ({
     } catch (error) {
       console.error('Failed to copy text: ', error);
     }
-  };
+  }; */
 
   const handleButtonClick = () => {
     if (copyText) {
-      handleCopy(copyText);
+      // handleCopy(copyText);
     } else if (handleClick) {
       handleClick();
     }
