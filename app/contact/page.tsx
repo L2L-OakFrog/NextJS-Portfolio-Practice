@@ -99,13 +99,6 @@ export default function ContactPage() {
                   <h3 className="font-bold mb-2">Call Us</h3>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                     <p className="text-neutral-300">(929) 655-9561</p>
-                    {/* <MagicButton
-                      title="Copy"
-                      icon={<IoCopyOutline />}
-                      position="left"
-                      otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 text-sm px-3 py-1 h-8"
-                      copyText="(929) 655-9561"
-                    /> */}
                   </div>
                 </div>
               </div>
@@ -119,13 +112,6 @@ export default function ContactPage() {
                   <h3 className="font-bold mb-2">Email Us</h3>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                     <p className="text-neutral-300 break-all whitespace-normal">Sharifanim66@gmail.com</p>
-                    {/* <MagicButton
-                      title="Copy"
-                      icon={<IoCopyOutline />}
-                      position="left"
-                      otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 text-sm px-3 py-1 h-8"
-                      copyText="Sharifanim66@gmail.com"
-                    /> */}
                   </div>
                 </div>
               </div>

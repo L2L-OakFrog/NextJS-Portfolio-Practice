@@ -27,14 +27,14 @@ const MagicButton = ({
   showConfetti = false
 }: MagicButtonProps) => {
   const [copied, setCopied] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setIsMounted(true);
   }, []);
 
- /*  const handleCopy = async (text: string) => {
-    if (!isClient) return;
+  const handleCopy = async (text: string) => {
+    if (!isMounted) return;
     
     try {
       if (navigator.clipboard) {
@@ -53,11 +53,11 @@ const MagicButton = ({
     } catch (error) {
       console.error('Failed to copy text: ', error);
     }
-  }; */
+  };
 
   const handleButtonClick = () => {
     if (copyText) {
-      // handleCopy(copyText);
+      handleCopy(copyText);
     } else if (handleClick) {
       handleClick();
     }
@@ -66,7 +66,7 @@ const MagicButton = ({
   return (
     <div className="relative">
       {/* Confetti animation */}
-      {showConfetti && copied && (
+      {showConfetti && copied && isMounted && (
         <div className="absolute -bottom-5 right-0 z-10">
           <Lottie
             options={{
