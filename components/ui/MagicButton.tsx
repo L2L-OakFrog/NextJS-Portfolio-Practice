@@ -80,7 +80,7 @@ const MagicButton = ({
   return (
     <div className="relative">
       {/* Confetti animation */}
-      {showConfetti && copied && isMounted && (
+      {/* {showConfetti && copied && isMounted && (
         <div className="absolute -bottom-5 right-0 z-10">
           <Lottie
             options={{
@@ -95,7 +95,7 @@ const MagicButton = ({
             width={100}
           />
         </div>
-      )}
+      )} */}
 
       <button 
         className={`relative inline-flex h-12 overflow-hidden rounded-lg p-[1px] focus:outline-none ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${containerSizeClasses[size]}`}
