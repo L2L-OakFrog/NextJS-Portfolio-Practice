@@ -57,7 +57,7 @@ const MagicButton = ({
 
   const handleButtonClick = () => {
     if (copyText) {
-      // handleCopy(copyText);
+      handleCopy(copyText);
     } else if (handleClick) {
       handleClick();
     }
@@ -66,7 +66,7 @@ const MagicButton = ({
   return (
     <div className="relative">
       {/* Confetti animation */}
-      {showConfetti && copied && isMounted && (
+      {/* {showConfetti && copied && isMounted && (
         <div className="absolute -bottom-5 right-0 z-10">
           <Lottie
             options={{
@@ -81,7 +81,7 @@ const MagicButton = ({
             width={100}
           />
         </div>
-      )}
+      )} */}
 
       <button 
         className={`relative inline-flex h-12 w-full overflow-hidden rounded-lg p-[1px] focus:outline-none md:w-60 md:mt-10 ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
