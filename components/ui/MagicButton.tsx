@@ -66,7 +66,7 @@ const MagicButton = ({
 
   // Size classes
   const sizeClasses = {
-    sm: 'h-10 text-xs px-4',
+    sm: 'h-12 text-xs px-4',
     md: 'h-12 text-sm px-7',
     lg: 'h-14 text-base px-8'
   };
@@ -79,6 +79,24 @@ const MagicButton = ({
 
   return (
     <div className="relative">
+      {/* Confetti animation */}
+      {showConfetti && copied && isMounted && (
+        <div className="absolute -bottom-5 right-0 z-10">
+          <Lottie
+            options={{
+              loop: false,
+              autoplay: true,
+              animationData,
+              rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice'
+              }
+            }}
+            height={100}
+            width={100}
+          />
+        </div>
+      )}
+
       <button 
         className={`relative inline-flex h-12 overflow-hidden rounded-lg p-[1px] focus:outline-none ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${containerSizeClasses[size]}`}
         onClick={handleButtonClick}
