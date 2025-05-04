@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "companyName": "TechConnect Solutions",
+    "tagline": "Professional telemarketing company specializing in lead conversion for various industries, including solar, MCA, insurance, and real estate.",
+    "mission": "To maximize your campaign success by delivering high-quality leads and closing deals effectively",
+    "spotlights": [
+      { "className": "-top-40 -left-10 md:-left-32 md:-top-20 h-screen", "fill": "white" },
+      { "className": "top-10 left-full h-[80vh] w-[50vw]", "fill": "purple" },
+      { "className": "top-28 left-80 h-[80vh] w-[50vw]", "fill": "blue" }
+    ]
+  },
+  "stats": [
+    { "value": "10+", "label": "Years Experience" },
+    { "value": "450+", "label": "Active Clients" },
+    { "value": "35%", "label": "Average Conversion Boost" },
+    { "value": "10+", "label": "Daily Deals Closed" }
+  ]
+}
