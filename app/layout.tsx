@@ -10,7 +10,7 @@ import { FloatingMessageIcon } from "@/components/FloatingMessageIcon";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Tech-Connect Solutions",
+  title: "RingCenter Solutions",
   description: "Professional telemarketing company specializing in lead conversion for various industries, including solar, MCA, insurance, and real estate",
 };
 
