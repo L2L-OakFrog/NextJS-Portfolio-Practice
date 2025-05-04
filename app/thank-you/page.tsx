@@ -14,7 +14,7 @@ export default function ThankYouPage() {
         {/* Main Message */}
         <h1 className="text-3xl sm:text-4xl font-bold mb-4">Thank You for Contacting Us!</h1>
         <p className="text-lg mb-6 text-neutral-300">
-          We've received your message and our team will get back to you soon.
+          We have received your message and our team will get back to you soon.
         </p>
         
         {/* Additional Info */}
