@@ -1,10 +1,18 @@
 'use client';
 import React from 'react'
-import { Spotlight } from './ui/Spotlight'
-import { TextGenerateEffect } from "./ui/TextGenerateEffect"
-import MagicButton from "./ui/MagicButton"
+import { Spotlight } from './Spotlight'
+import { TextGenerateEffect } from "./TextGenerateEffect"
+import MagicButton from "./MagicButton"
 import { FaLocationArrow } from "react-icons/fa6"
 import { IoMdMegaphone } from "react-icons/io"
+import { StatsSection } from "./StatsSection";
+
+const stats = [
+  { value: "10+", label: "Years Experience" },
+  { value: "450+", label: "Active Clients" },
+  { value: "35%", label: "Average Conversion Boost" },
+  { value: "10+", label: "Daily Deals Closed" },
+];
 
 const Hero = () => {
   return (
@@ -19,15 +27,15 @@ const Hero = () => {
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       </div>
 
-      <div className="flex justify-center relative my-20 z-10">
-        <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-          <h2 className='uppercase tracking-widest text-xs text-center text-blue-100 max-w-80'>
+      <div className="flex justify-center relative z-10">
+        <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[89vw] flex flex-col items-center justify-center">
+          <h2 className='uppercase tracking-widest text-center text-blue-100 max-w-80'>
             TechConnect Solutions 
           </h2>
 
           <TextGenerateEffect
             words="Professional telemarketing company specializing in lead conversion for various industries, including solar, MCA, insurance, and real estate."
-            className="text-center text-[40px] md:text-5xl lg:text-6xl"
+            className="text-center text-[40px] md:text-5xl lg:text-5xl"
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
@@ -35,17 +43,19 @@ const Hero = () => {
             To maximize your campaign success by delivering high-quality leads and closing deals effectively
           </p>
           
-          <a href="/campaigns">
-            {/* <MagicButton
+          <a href="/contact">
+            <MagicButton
               // information={{
               //   title: "See My Works"
               // }}
               // title="See My Works"
-              title="Check Past Campaigns"
+              title="Connect with us"
               icon={<IoMdMegaphone />}
               position="right"
-            /> */}
+            />
           </a>
+          
+          <StatsSection stats={stats} className="" />
         </div>
       </div>
     </div>

@@ -10,6 +10,9 @@ import { IoMdRocket, IoMdFlash } from "react-icons/io";
 import Link from "next/link";
 import { IoMdMegaphone } from "react-icons/io";
 import { useRouter } from "next/navigation"; // Changed from next/router to next/navigation
+import { SuccessMetrics } from "@/components/ui/SuccessMetrics";
+import { SimpleLineGraph } from "@/components/ui/SimpleLineGraph";
+import { MetricsDashboard } from "@/components/ui/MetricsDashboard";
 
 // Dynamically import GlobeDemo with SSR disabled
 const GlobeDemo = dynamic(
@@ -196,6 +199,64 @@ export default function AboutPage() {
         </div>
       ),
     },
+    /* {
+      title: "Performance Metrics",
+      description: "Detailed metrics across all services",
+      className: "md:col-span-3 col-span-3",
+      style: {
+        background: "linear-gradient(135deg, #4c1d95 0%, #701a75 100%)",
+      },
+      minHeight: "min-h-[24rem] md:min-h-[28rem]",
+      children: (
+        <div className="flex flex-col h-full p-4">
+          <MetricsDashboard
+            title="Service Performance"
+            description="Key metrics across all our service offerings"
+            services={[
+              {
+                service: "MCA Financing",
+                chartType: "",
+                metrics: [
+                  { name: "Finance Amount", value: 100, unit: "K" },
+                  { name: "Approval Rate", value: 94, unit: "%" },
+                  { name: "Deals/Month", value: 7 },
+                  { name: "Avg. Funding", value: 58, unit: "K" },
+                ],
+              },{
+            service: "Business Loans",
+            chartType: "bar",
+            metrics: [
+              { name: "Funded Amount", value: 75, unit: "K" },
+              { name: "Deals/Month", value: 5 },
+              { name: "Approval Rate", value: 82, unit: "%" },
+              { name: "Avg. Funding", value: 42, unit: "K" },
+            ],
+          },
+              {
+                service: "Solar Energy",
+                chartType: "line",
+                metrics: [
+                  { name: "Loss in Generation", value: 450 },
+                  { name: "Installations", value: 120 },
+                  { name: "Conversion", value: 78, unit: "%" },
+                  { name: "Avg. Savings", value: 150, unit: "/mo" },
+                ],
+              },
+              {
+                service: "Home Improvement",
+                chartType: "pie",
+                metrics: [
+                  { name: "Projects", value: 320 },
+                  { name: "Conversion", value: 65, unit: "%" },
+                  { name: "Avg. Value", value: 45, unit: "K" },
+                  { name: "Repeat Clients", value: 42, unit: "%" },
+                ],
+              },
+            ]}
+          />
+        </div>
+      ),
+    }, */
     {
       title: "Global Reach",
       description: "Serving clients worldwide with our expert network across 25+ countries",

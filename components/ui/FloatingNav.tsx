@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/utils/cn";
-import { FaHome, FaInfoCircle, FaRocket, FaChartLine } from "react-icons/fa";
+import { FaHome, FaInfoCircle, FaRocket, FaChartLine, FaBook } from "react-icons/fa";
 import { IoMdMegaphone } from "react-icons/io";
 
 export const FloatingNav = ({
@@ -22,6 +22,7 @@ export const FloatingNav = ({
     { name: "Home", link: "/", icon: <FaHome size={16} /> },
     { name: "About", link: "/about", icon: <FaInfoCircle size={16} /> },
     { name: "Campaigns", link: "/campaigns", icon: <IoMdMegaphone size={16} /> },
+    { name: "Blog", link: "/blog", icon: <FaBook size={16} /> },
     // { name: "Contact", link: "/contact", icon: <FaInfoCircle size={16} /> },
     /* { 
       name: "Campaigns", 

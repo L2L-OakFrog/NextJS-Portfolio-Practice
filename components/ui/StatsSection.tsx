@@ -15,7 +15,7 @@ export const StatsSection = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("py-12 bg-black-100", className)}>
+    <div className={cn("py-12 bg-white dark:bg-black-100", className)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
@@ -27,8 +27,12 @@ export const StatsSection = ({
               viewport={{ once: true }}
               className="text-center"
             >
-              <p className="text-4xl font-bold text-white mb-2">{stat.value}</p>
-              <p className="text-lg text-gray-300">{stat.label}</p>
+              <p className="text-4xl font-bold text-black dark:text-white mb-2">
+                {stat.value}
+              </p>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                {stat.label}
+              </p>
             </motion.div>
           ))}
         </div>
