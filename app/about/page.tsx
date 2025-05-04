@@ -1,20 +1,20 @@
+// AboutPage.tsx
 'use client';
 import { BentoGrid } from "@/components/ui/BentoGrid2";
 import { BentoGridItem } from "@/components/ui/BentoGridItem";
 import dynamic from "next/dynamic";
 import MagicButton from "@/components/ui/MagicButton";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
-import { FaCommentAlt, FaCrown, FaHome, FaHospital } from "react-icons/fa";
+import { FaCommentAlt, FaCrown, FaHome, FaHospital, FaLightbulb, FaBullseye, FaEye, FaChartLine } from "react-icons/fa";
 import { GiAirBalloon, GiMechanicGarage, GiWindyStripes } from "react-icons/gi";
 import { IoMdRocket, IoMdFlash } from "react-icons/io";
 import Link from "next/link";
 import { IoMdMegaphone } from "react-icons/io";
-import { useRouter } from "next/navigation"; // Changed from next/router to next/navigation
+import { useRouter } from "next/navigation";
 import { SuccessMetrics } from "@/components/ui/SuccessMetrics";
-import { SimpleLineGraph } from "@/components/ui/SimpleLineGraph";
-import { MetricsDashboard } from "@/components/ui/MetricsDashboard";
+import CoreValues from "@/components/ui/CoreValues";
+import VideoGallery from "@/components/ui/VideoGallery";
 
-// Dynamically import GlobeDemo with SSR disabled
 const GlobeDemo = dynamic(
   () => import("@/components/ui/GridGlobe").then((mod) => mod.GlobeDemo as React.ComponentType<any>),
   {
@@ -45,35 +45,110 @@ const StatBadge = ({ value, label }: { value: string; label: string }) => (
 );
 
 export default function AboutPage() {
-  const router = useRouter(); // Moved inside the component
+  const router = useRouter();
 
   const aboutItems: AboutItem[] = [
+    // Vision Section
     {
-      title: "Who We Are",
-      description: "TechConnect provides expert telemarketing services for solar, MCA, insurance, and real estate industries. With 8 years of telemarketing excellence across multiple industries, We've delivered exceptional results in merchant cash advance, solar energy, home improvement, and Australian government initiatives.",
-      className: "md:col-span-2 col-span-3",
+      title: "Our Vision",
+      description: "Redefining telemarketing excellence globally",
+      className: "md:col-span-1 col-span-3",
+      style: {
+        background: "linear-gradient(135deg, #1e40af 0%, #7c3aed 100%)",
+      },
+      minHeight: "min-h-[20rem]",
+      children: (
+        <div className="p-4">
+          <div className="flex items-center gap-3 mb-4">
+            <FaEye className="text-yellow-300 text-xl" />
+            <h3 className="text-lg font-bold">Vision Statement</h3>
+          </div>
+          <p className="text-sm">
+            Our vision at RingCenter Solutions is to become a global leader in telemarketing and lead conversion services, 
+            renowned for our excellence, reliability, and innovation. We aspire to redefine the telemarketing industry by 
+            setting new standards of efficiency, transparency, and customer satisfaction.
+          </p>
+        </div>
+      ),
+    },
+
+    // Mission Section
+    {
+      title: "Our Mission",
+      description: "Empowering businesses through exceptional telemarketing",
+      className: "md:col-span-1 col-span-3",
+      style: {
+        background: "linear-gradient(135deg, #065f46 0%, #0d9488 100%)",
+      },
+      minHeight: "min-h-[20rem]",
+      children: (
+        <div className="p-4">
+          <div className="flex items-center gap-3 mb-4">
+            <FaBullseye className="text-blue-300 text-xl" />
+            <h3 className="text-lg font-bold">Mission Statement</h3>
+          </div>
+          <p className="text-sm">
+            At RingCenter Solutions, our mission is to empower businesses with seamless and cost-effective telemarketing 
+            services that drive measurable results. We strive to bridge the gap between potential and success by converting 
+            leads into loyal customers through tailored strategies and exceptional service.
+          </p>
+        </div>
+      ),
+    },
+
+    // Core Values
+    {
+      title: "Core Values",
+      description: "The principles that guide our work",
+      className: "md:col-span-1 col-span-3",
+      style: {
+        background: "linear-gradient(135deg, #7e22ce 0%, #c026d3 100%)",
+      },
+      minHeight: "min-h-[20rem]",
+      children: <CoreValues />,
+    },
+
+    // Our Story
+    {
+      title: "Our Story",
+      description: "From humble beginnings to industry leaders",
+      className: "md:col-span-3 col-span-3",
       style: {
         background: "linear-gradient(135deg, #1e3a8a 0%, #7e22ce 100%)",
       },
-      minHeight: "min-h-[16rem] md:min-h-[16rem]"
-    },
-    {
-      title: "Our Method",
-      description: "Data-driven strategies with human expertise:",
-      className: "md:col-span-1 col-span-3",
-      style: {
-        background: "linear-gradient(135deg, #047857 0%, #0ea5e9 100%)",
-      },
-      minHeight: "min-h-[16rem] md:min-h-[20rem]",
+      minHeight: "min-h-[16rem]",
       children: (
-        <ul className="mt-2 space-y-2 text-sm">
-          <li className="flex items-start gap-2">
-            <span className="text-blue-400">•</span> Targeted lead sourcing
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-blue-400">•</span> Multi-channel outreach
-          </li>
-        </ul>
+        <div className="p-4">
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="bg-black/20 p-4 rounded-lg">
+              <h4 className="font-bold flex items-center gap-2 mb-2">
+                <FaLightbulb className="text-yellow-400" />
+                Founded
+              </h4>
+              <p className="text-sm">
+                Established in 2015 with a small team of passionate telemarketing professionals.
+              </p>
+            </div>
+            <div className="bg-black/20 p-4 rounded-lg">
+              <h4 className="font-bold flex items-center gap-2 mb-2">
+                <FaChartLine className="text-green-400" />
+                Growth
+              </h4>
+              <p className="text-sm">
+                Expanded to serve 450+ clients across multiple industries worldwide.
+              </p>
+            </div>
+            <div className="bg-black/20 p-4 rounded-lg">
+              <h4 className="font-bold flex items-center gap-2 mb-2">
+                <IoMdRocket className="text-blue-400" />
+                Today
+              </h4>
+              <p className="text-sm">
+                Recognized as a trusted partner for lead conversion with 35% average conversion boost.
+              </p>
+            </div>
+          </div>
+        </div>
       ),
     },
     /* {
@@ -103,6 +178,8 @@ export default function AboutPage() {
         </div>
       ),
     }, */
+
+    // Success Metrics
     {
       title: "Success Metrics",
       description: "Documented campaign results across our specialties:",
@@ -110,7 +187,7 @@ export default function AboutPage() {
       style: {
         background: "linear-gradient(135deg, #4c1d95 0%, #701a75 100%)",
       },
-      minHeight: "min-h-[24rem] md:min-h-[28rem]",
+      minHeight: "min-h-[24rem]",
       children: (
         <div className="flex flex-col h-full p-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-4">
@@ -199,6 +276,18 @@ export default function AboutPage() {
         </div>
       ),
     },
+
+    // Video Gallery
+    {
+      title: "In Action",
+      description: "See our work and client testimonials",
+      className: "md:col-span-3 col-span-3",
+      style: {
+        background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+      },
+      minHeight: "min-h-[24rem]",
+      children: <VideoGallery />,
+    },
     /* {
       title: "Performance Metrics",
       description: "Detailed metrics across all services",
@@ -257,6 +346,8 @@ export default function AboutPage() {
         </div>
       ),
     }, */
+
+    //Global Reach
     {
       title: "Global Reach",
       description: "Serving clients worldwide with our expert network across 25+ countries",
@@ -271,6 +362,8 @@ export default function AboutPage() {
         </div>
       ),
     },
+
+    // Get Started
     {
       title: "Get Started",
       description: "Contact us today:",
@@ -281,6 +374,13 @@ export default function AboutPage() {
       minHeight: "min-h-[12rem] md:min-h-[16rem]",
       children: (
         <div className="flex flex-col h-full justify-end p-4">
+          {/* <MagicButton
+            title="Contact Us"
+            icon={<FaCommentAlt size={18} />}
+            position="right"
+            handleClick={() => router.push('/contact')}
+            otherClasses="w-full"
+          /> */}
           <Link href="/contact" className="flex items-center justify-center gap-2 text-white hover:text-blue-300 transition-colors">
             <FaCommentAlt size={18} />
             <span className="text-sm sm:text-base">Contact Form</span>
@@ -294,7 +394,7 @@ export default function AboutPage() {
     <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto px-4 sm:px-6">
       <div className="w-full pt-12 sm:pt-16 pb-6 sm:pb-8">
         <TextGenerateEffect 
-          words="About TechConnect" 
+          words="About RingCenter Solutions" 
           className="text-center text-2xl sm:text-3xl md:text-4xl font-bold"
         />
         

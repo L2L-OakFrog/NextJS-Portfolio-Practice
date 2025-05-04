@@ -69,7 +69,7 @@ export const FloatingNav = ({
           </button>
 
           <div className="sm:hidden text-white font-medium px-2">
-            TECHCONNECT
+            RINGCENTER
           </div>
 
           {/* Desktop Navigation */}
