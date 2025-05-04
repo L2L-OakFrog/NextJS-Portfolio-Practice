@@ -17,10 +17,10 @@ export const Footer = () => {
           <div>
             <h4 className="font-bold mb-4">Our Services</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link href="/services/solar" className="hover:text-white transition">Solar Campaigns</Link></li>
-              <li><Link href="/services/mca" className="hover:text-white transition">MCA Campaigns</Link></li>
-              <li><Link href="/services/insurance" className="hover:text-white transition">Insurance Campaigns</Link></li>
-              <li><Link href="/services/real-estate" className="hover:text-white transition">Real Estate Campaigns</Link></li>
+              <li><Link href="/campaigns" className="hover:text-white transition">Solar Campaigns</Link></li>
+              <li><Link href="/campaigns" className="hover:text-white transition">MCA Campaigns</Link></li>
+              <li><Link href="/campaigns" className="hover:text-white transition">Insurance Campaigns</Link></li>
+              <li><Link href="/campaigns" className="hover:text-white transition">Real Estate Campaigns</Link></li>
             </ul>
           </div>
 

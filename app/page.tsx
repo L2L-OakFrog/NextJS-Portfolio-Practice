@@ -4,12 +4,6 @@ import Loader from "@/components/ui/Loader";
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from "react";
 
-// First, define the dynamic Loader component
-/* const Loader = dynamic(() => import('@/components/ui/Loader'), {
-  ssr: false,
-  loading: () => <div className="h-16 w-16 rounded-full bg-gray-200 animate-pulse" />
-}); */
-
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -17,7 +11,7 @@ export default function Home() {
     setIsMounted(true);
   }, []);
 
-  // Then define DynamicBox which can now use the Loader
+  // Dynamically import components with proper loading states
   const DynamicBox = dynamic(() => import('@/components/ui/DynamicBox'), {
     ssr: false,
     loading: () => (
