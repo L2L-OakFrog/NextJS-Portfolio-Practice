@@ -7,35 +7,35 @@ const videos = [
   {
     id: 'video1',
     title: 'Telemarketing Best Practices',
-    embedUrl: ' ', // Example telemarketing training video
+    embedUrl: 'https://www.youtube.com/embed/7KXGZAEWzn0', // Fixed embed URL
     thumbnail: 'https://img.youtube.com/vi/7KXGZAEWzn0/maxresdefault.jpg',
     description: 'Industry-standard telemarketing techniques we employ'
   },
   {
     id: 'video2',
     title: 'Lead Generation Process',
-    embedUrl: 'https://www.youtube.com/embed/wXeuYtxVhwY', // Example lead gen explanation
+    embedUrl: 'https://www.youtube.com/embed/wXeuYtxVhwY',
     thumbnail: 'https://img.youtube.com/vi/wXeuYtxVhwY/maxresdefault.jpg',
     description: 'How professional lead generation typically works'
   },
   {
     id: 'video3',
     title: 'CRM Integration Demo',
-    embedUrl: 'https://www.youtube.com/embed/5B2XQ5gL9d0', // Example CRM integration
+    embedUrl: 'https://www.youtube.com/embed/5B2XQ5gL9d0',
     thumbnail: 'https://img.youtube.com/vi/5B2XQ5gL9d0/maxresdefault.jpg',
     description: 'Similar to how we integrate with your systems'
   },
   {
     id: 'video4',
     title: 'Call Center Quality Assurance',
-    embedUrl: 'https://www.youtube.com/embed/5Uj6WfIN7Rc', // Example QA process
+    embedUrl: 'https://www.youtube.com/embed/5Uj6WfIN7Rc',
     thumbnail: 'https://img.youtube.com/vi/5Uj6WfIN7Rc/maxresdefault.jpg',
     description: 'Our quality standards match industry best practices'
   },
   {
     id: 'video5',
     title: 'B2B Telemarketing Strategies',
-    embedUrl: 'https://www.youtube.com/embed/9W6O7QDuQ4I', // Example B2B strategies
+    embedUrl: 'https://www.youtube.com/embed/9W6O7QDuQ4I',
     thumbnail: 'https://img.youtube.com/vi/9W6O7QDuQ4I/maxresdefault.jpg',
     description: 'The approach we take for business clients'
   }
@@ -50,15 +50,21 @@ export const VideoGallery = () => {
       {/* Main Video with Description */}
       <div className="mb-6">
         <div className="aspect-video w-full mb-2 bg-black rounded-lg overflow-hidden">
-          <iframe
-            src={`${activeVideoData?.embedUrl}?rel=0`}
-            className="w-full h-full"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            loading="lazy"
-            title={activeVideoData?.title}
-          />
+          {activeVideoData?.embedUrl ? (
+            <iframe
+              src={`${activeVideoData.embedUrl}?rel=0&modestbranding=1`}
+              className="w-full h-full"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+              title={activeVideoData.title}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gray-800 text-white">
+              Video not available
+            </div>
+          )}
         </div>
         <div className="mt-2">
           <h3 className="text-lg font-semibold">{activeVideoData?.title}</h3>
@@ -82,6 +88,9 @@ export const VideoGallery = () => {
                 alt={video.title}
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://via.placeholder.com/300x169?text=Video+Thumbnail';
+                }}
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">

@@ -41,16 +41,32 @@ export const Footer = () => {
           <div>
             <h4 className="font-bold mb-4">Follow Us</h4>
             <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-white transition">
+              <Link 
+                href="#" 
+                className="text-gray-400 hover:text-white transition"
+                aria-label="Facebook"
+              >
                 <FaFacebook size={20} />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition">
+              <Link 
+                href="#" 
+                className="text-gray-400 hover:text-white transition"
+                aria-label="Twitter"
+              >
                 <FaTwitter size={20} />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition">
+              <Link 
+                href="#" 
+                className="text-gray-400 hover:text-white transition"
+                aria-label="LinkedIn"
+              >
                 <FaLinkedin size={20} />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition">
+              <Link 
+                href="#" 
+                className="text-gray-400 hover:text-white transition"
+                aria-label="Instagram"
+              >
                 <FaInstagram size={20} />
               </Link>
             </div>

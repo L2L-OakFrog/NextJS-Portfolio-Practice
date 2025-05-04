@@ -64,6 +64,7 @@ export const FloatingNav = ({
           <button
             className="md:hidden p-2 text-neutral-300 hover:text-white transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </button>

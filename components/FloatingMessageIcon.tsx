@@ -11,7 +11,7 @@ export const FloatingMessageIcon = () => {
         whileTap={{ scale: 0.9 }}
         className="bg-green-600 text-white p-3 rounded-full shadow-lg"
       >
-        <Link href="https://wa.me/8807736030303" target="_blank">
+        <Link href="https://wa.me/8807736030303" target="_blank" aria-label="Contact us on WhatsApp">
           <FaWhatsapp size={24} />
         </Link>
       </motion.div> */}
@@ -21,7 +21,7 @@ export const FloatingMessageIcon = () => {
         whileTap={{ scale: 0.9 }}
         className="bg-blue-600 text-white p-3 rounded-full shadow-lg"
       >
-        <Link href="/contact">
+        <Link href="/contact" aria-label="Contact us">
           <FaCommentAlt size={24} />
         </Link>
       </motion.div>
