@@ -313,7 +313,7 @@ export default function AboutPage() {
                 style={item.style}
                 header={item.header}
                 titleClassName="text-lg sm:text-xl"
-                descriptionClassName="text-xs sm:text-sm"
+                descriptionClassName="md:text-lg sm:text-sm"
               >
                 {item.children}
               </BentoGridItem>

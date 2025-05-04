@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./provider";
-import { FloatingNav } from "@/components/ui/FloatingNav";
+import { FloatingNav } from "@/components/FloatingNav";
 import { Footer } from "@/components/ui/Footer";
-import { FloatingMessageIcon } from "@/components/ui/FloatingMessageIcon";
+import { FloatingMessageIcon } from "@/components/FloatingMessageIcon";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,20 +1,20 @@
-// components/ui/Box.tsx
+// components/ui/DynamicBox.tsx
 'use client';
 import React from 'react';
 import { cn } from "@/utils/cn";
 
-type BoxProps<T extends React.ElementType> = {
+type DynamicBoxProps<T extends React.ElementType> = {
   as?: T;
   className?: string;
   children?: React.ReactNode;
 } & React.ComponentPropsWithoutRef<T>;
 
-const Box = <T extends React.ElementType = 'div'>({
+const DynamicBox = <T extends React.ElementType = 'div'>({
   as,
   className,
   children,
   ...props
-}: BoxProps<T>) => {
+}: DynamicBoxProps<T>) => {
   const Component = as || 'div';
   
   return (
@@ -24,5 +24,5 @@ const Box = <T extends React.ElementType = 'div'>({
   );
 };
 
-export default Box;
-export type { BoxProps };
+export default DynamicBox;
+export type { DynamicBoxProps };
