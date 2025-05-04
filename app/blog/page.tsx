@@ -137,11 +137,11 @@ export default function BlogPage() {
   const regularPosts = blogPosts.filter(post => !post.featured);
 
   return (
-    <main className="relative">
+    <main className="w-full">
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
-        <div className="text-center mb-8 sm:mb-12">
+      <div className="py-6">
+        <div className="text-center">
           <TextGenerateEffect 
             words="Marketing Insights & Strategies" 
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4"
@@ -152,7 +152,7 @@ export default function BlogPage() {
         </div>
 
         {/* Carousel */}
-        <div className="relative mb-12 sm:mb-16 overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl">
+        <div className="relative my-6 overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl">
           <div 
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}

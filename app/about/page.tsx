@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { SuccessMetrics } from "@/components/ui/SuccessMetrics";
 import CoreValues from "@/components/ui/CoreValues";
 import VideoGallery from "@/components/ui/VideoGallery";
+import { Spotlight } from "@/components/ui/Spotlight";
 
 const GlobeDemo = dynamic(
   () => import("@/components/ui/GridGlobe").then((mod) => mod.GlobeDemo as React.ComponentType<any>),
@@ -82,7 +83,7 @@ export default function AboutPage() {
       },
       minHeight: "min-h-[20rem]",
       children: (
-        <div className="p-4">
+        <div className="py-4">
           <div className="flex items-center gap-3 mb-4">
             <FaBullseye className="text-blue-300 text-xl" />
             <h3 className="text-lg font-bold">Mission Statement</h3>
@@ -118,7 +119,7 @@ export default function AboutPage() {
       },
       minHeight: "min-h-[16rem]",
       children: (
-        <div className="p-4">
+        <div className="py-4">
           <div className="grid md:grid-cols-3 gap-4">
             <div className="bg-black/20 p-4 rounded-lg">
               <h4 className="font-bold flex items-center gap-2 mb-2">
@@ -189,7 +190,7 @@ export default function AboutPage() {
       },
       minHeight: "min-h-[24rem]",
       children: (
-        <div className="flex flex-col h-full p-2">
+        <div className="flex flex-col h-full py-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-4">
             {/* MCA Financing */}
             <div className="bg-black/30 p-3 rounded-lg">
@@ -367,7 +368,7 @@ export default function AboutPage() {
     {
       title: "Get Started",
       description: "Contact us today:",
-      className: "md:col-span-1 col-span-3",
+      className: "md:col-span-1 col-span-3 p-3 sm:p-4",
       style: {
         background: "linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%)",
       },
@@ -391,14 +392,16 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto px-4 sm:px-6">
-      <div className="w-full pt-12 sm:pt-16 pb-6 sm:pb-8">
+    <main className="w-full">
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
+      
+      <div className="py-6">
         <TextGenerateEffect 
           words="About RingCenter Solutions" 
           className="text-center text-2xl sm:text-3xl md:text-4xl font-bold"
         />
         
-        <div className="max-w-6xl mx-auto mt-4 sm:mt-8 w-full">
+        <div className="mt-6">
           <BentoGrid 
             cols={3} 
             gap="md" 
@@ -409,7 +412,7 @@ export default function AboutPage() {
                 key={i}
                 title={item.title}
                 description={item.description}
-                className={`${item.className} ${item.minHeight} p-3 sm:p-4`}
+                className={`${item.className} ${item.minHeight}`}
                 style={item.style}
                 header={item.header}
                 titleClassName="text-lg sm:text-xl"

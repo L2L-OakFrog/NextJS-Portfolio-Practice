@@ -119,114 +119,115 @@ export default function CampaignsPage() {
   };
 
   return (
-    <main>
+    <main className="w-full">
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
       
-      <div className="w-full pt-12 sm:pt-16 pb-6 sm:pb-8">
+      <div className="py-6">
         <TextGenerateEffect 
           words="My Campaign Portfolio" 
-          className="text-center mb-8 sm:mb-12 text-2xl sm:text-3xl"
+          className="text-center text-2xl sm:text-3xl md:text-4xl font-bold"
         />
-        
-        <BentoGrid className=""> {/* Removed fixed height */}
-  {/* Featured Campaign */}
-  {featuredCampaign && (
-    <BentoGridItem
-      title={featuredCampaign.title}
-      description={featuredCampaign.description}
-      className={`${featuredCampaign.className} min-h-[20rem]`} // Added min-height
-      header={
-        <div className="relative h-full">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-blue-900/50 rounded-xl md:rounded-3xl" />
-          <div className="relative z-10 p-4 sm:p-6 h-full flex flex-col">
-            <div className="flex items-center gap-2 mb-2">
-              <FaCrown className="text-yellow-400" />
-              <span className="px-2 py-1 bg-white/10 rounded-full text-xs">TOP PERFORMER</span>
-            </div>
-            <div className="flex flex-col sm:flex-row justify-between gap-4">
-              <div className="space-y-2">
-                <h3 className="text-xl sm:text-2xl font-bold">{featuredCampaign.title}</h3>
-                <p className="text-sm">{featuredCampaign.description}</p>
-              </div>
-              <div className="text-right">
-                <p className="text-3xl sm:text-4xl font-bold">94%</p>
-                <p className="text-xs sm:text-sm">Conversion Rate</p>
-              </div>
-            </div>
-            <div className="mt-auto grid grid-cols-3 gap-2 sm:gap-4">
-              {featuredCampaign.stats.map((stat, index) => (
-                <div key={index} className="bg-black/20 p-2 sm:p-3 rounded-lg">
-                  <p className="text-lg sm:text-2xl font-bold">{stat.value}</p>
-                  <p className="text-xs sm:text-sm">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4">
-              <MagicButton
-                title="View Details"
-                icon={<FaArrowRight />}
-                position="right"
-                otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 w-full text-sm"
-                handleClick={() => navigateToCampaign(featuredCampaign.title)}
+        <div className="mt-6">
+          <BentoGrid className=""> {/* Removed fixed height */}
+            {/* Featured Campaign */}
+            {featuredCampaign && (
+              <BentoGridItem
+                title={featuredCampaign.title}
+                description={featuredCampaign.description}
+                className={`${featuredCampaign.className} min-h-[20rem]`} // Added min-height
+                header={
+                  <div className="relative h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-blue-900/50 rounded-xl md:rounded-3xl" />
+                    <div className="relative z-10 p-4 sm:p-6 h-full flex flex-col">
+                      <div className="flex items-center gap-2 mb-2">
+                        <FaCrown className="text-yellow-400" />
+                        <span className="px-2 py-1 bg-white/10 rounded-full text-xs">TOP PERFORMER</span>
+                      </div>
+                      <div className="flex flex-col sm:flex-row justify-between gap-4">
+                        <div className="space-y-2">
+                          <h3 className="text-xl sm:text-2xl font-bold">{featuredCampaign.title}</h3>
+                          <p className="text-sm">{featuredCampaign.description}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-3xl sm:text-4xl font-bold">94%</p>
+                          <p className="text-xs sm:text-sm">Conversion Rate</p>
+                        </div>
+                      </div>
+                      <div className="mt-auto grid grid-cols-3 gap-2 sm:gap-4">
+                        {featuredCampaign.stats.map((stat, index) => (
+                          <div key={index} className="bg-black/20 p-2 sm:p-3 rounded-lg">
+                            <p className="text-lg sm:text-2xl font-bold">{stat.value}</p>
+                            <p className="text-xs sm:text-sm">{stat.label}</p>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-4">
+                        <MagicButton
+                          title="View Details"
+                          icon={<FaArrowRight />}
+                          position="right"
+                          otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 w-full text-sm"
+                          handleClick={() => navigateToCampaign(featuredCampaign.title)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                }
+                style={{
+                  background: "linear-gradient(135deg, #4c1d95 0%, #701a75 100%)",
+                  borderColor: "rgba(255,255,255,0.1)"
+                }}
+                titleClassName="text-lg sm:text-xl"
+                descriptionClassName="text-sm"
               />
-            </div>
-          </div>
-        </div>
-      }
-      style={{
-        background: "linear-gradient(135deg, #4c1d95 0%, #701a75 100%)",
-        borderColor: "rgba(255,255,255,0.1)"
-      }}
-      titleClassName="text-lg sm:text-xl"
-      descriptionClassName="text-sm"
-    />
-  )}
+            )}
 
-  {/* Regular Campaigns */}
-  {regularCampaigns.map((campaign, i) => (
-    <BentoGridItem
-      key={i}
-      title={campaign.title}
-      description={campaign.description}
-      className={`${campaign.className} min-h-[12rem]`} // Added min-height
-      header={
-        <div className="flex flex-col h-full p-4">
-          <div className="flex justify-between items-start gap-2">
-            <div className="flex-shrink-0">
-              {campaign.icon}
-            </div>
-            <div className="flex flex-wrap gap-1 justify-end">
-              {campaign.stats.map((stat, j) => (
-                <div key={j} className="px-2 py-1 bg-black/30 rounded-full text-xs sm:text-sm">
-                  <span className="font-bold">{stat.value}</span> {stat.label}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="mt-2">
-            <h3 className="text-lg font-bold">{campaign.title}</h3>
-            <p className="text-sm text-gray-300">{campaign.description}</p>
-          </div>
-          <div className="mt-auto pt-4">
-            <MagicButton
-              title="View Details"
-              icon={<FaArrowRight />}
-              position="right"
-              otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 w-full text-sm"
-              handleClick={() => navigateToCampaign(campaign.title)}
-            />
-          </div>
+            {/* Regular Campaigns */}
+            {regularCampaigns.map((campaign, i) => (
+              <BentoGridItem
+                key={i}
+                title={campaign.title}
+                description={campaign.description}
+                className={`${campaign.className} min-h-[12rem]`} // Added min-height
+                header={
+                  <div className="flex flex-col h-full p-4">
+                    <div className="flex justify-between items-start gap-2">
+                      <div className="flex-shrink-0">
+                        {campaign.icon}
+                      </div>
+                      <div className="flex flex-wrap gap-1 justify-end">
+                        {campaign.stats.map((stat, j) => (
+                          <div key={j} className="px-2 py-1 bg-black/30 rounded-full text-xs sm:text-sm">
+                            <span className="font-bold">{stat.value}</span> {stat.label}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="mt-2">
+                      <h3 className="text-lg font-bold">{campaign.title}</h3>
+                      <p className="text-sm text-gray-300">{campaign.description}</p>
+                    </div>
+                    <div className="mt-auto pt-4">
+                      <MagicButton
+                        title="View Details"
+                        icon={<FaArrowRight />}
+                        position="right"
+                        otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 w-full text-sm"
+                        handleClick={() => navigateToCampaign(campaign.title)}
+                      />
+                    </div>
+                  </div>
+                }
+                style={{
+                  background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)",
+                  borderColor: "rgba(255,255,255,0.1)"
+                }}
+                titleClassName="text-lg sm:text-xl"
+                descriptionClassName="text-sm"
+              />
+            ))}
+          </BentoGrid>
         </div>
-      }
-      style={{
-        background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)",
-        borderColor: "rgba(255,255,255,0.1)"
-      }}
-      titleClassName="text-lg sm:text-xl"
-      descriptionClassName="text-sm"
-    />
-  ))}
-</BentoGrid>
       </div>
     </main>
   );

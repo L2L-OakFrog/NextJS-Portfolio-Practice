@@ -28,11 +28,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto px-5 sm:px-10">
-            <FloatingNav />
+          <FloatingNav />
+          <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto px-5 pt-20 sm:px-10">
             {children}
-            <FloatingMessageIcon />
           </main>
+          <FloatingMessageIcon />
           <Footer />
         </ThemeProvider>
       </body>
