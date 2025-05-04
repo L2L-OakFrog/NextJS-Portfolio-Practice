@@ -1,51 +1,59 @@
 "use client";
 import Link from "next/link";
-import { FaCheckCircle, FaHome, FaEnvelope, FaInfoCircle } from "react-icons/fa";
+import { FaCheckCircle, FaHome, FaBook, FaInfoCircle, FaPhone } from "react-icons/fa";
 
 export default function ThankYouPage() {
   return (
-    <div className="min-h-screen bg-black-100 text-white py-20 px-6 sm:px-8 flex items-center justify-center">
-      <div className="max-w-2xl mx-auto text-center bg-black/50 backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/10">
-        {/* Success Icon */}
-        <div className="flex justify-center mb-6">
-          <FaCheckCircle className="text-green-500 text-6xl" />
+    <div className="w-full px-4 sm:px-0"> {/* Added horizontal padding for mobile */}
+      <div className="max-w-2xl mx-auto text-center bg-black/50 backdrop-blur-md my-6 p-6 sm:p-10 rounded-3xl border border-white/10">
+        {/* Success Icon - Made slightly smaller on mobile */}
+        <div className="flex justify-center mb-4 sm:mb-6">
+          <FaCheckCircle className="text-green-500 text-5xl sm:text-6xl" />
         </div>
         
-        {/* Main Message */}
-        <h1 className="text-3xl sm:text-4xl font-bold mb-4">Thank You for Contacting Us!</h1>
-        <p className="text-lg mb-6 text-neutral-300">
+        {/* Main Message - Adjusted text sizes for mobile */}
+        <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">
+          Thank You for<br className="sm:hidden" /> Contacting Us!
+        </h1>
+        <p className="text-base sm:text-lg mb-4 sm:mb-6 text-neutral-300">
           We have received your message and our team will get back to you soon.
         </p>
         
-        {/* Additional Info */}
-        <div className="bg-blue-900/20 rounded-lg p-4 mb-8 flex items-start">
-          <FaInfoCircle className="text-blue-400 mt-1 mr-3 flex-shrink-0" />
-          <p className="text-left">
+        {/* Additional Info - Adjusted padding and layout for mobile */}
+        <div className="bg-blue-900/20 rounded-lg p-3 sm:p-4 mb-6 sm:mb-8 flex items-start">
+          <FaInfoCircle className="text-blue-400 mt-1 mr-2 sm:mr-3 flex-shrink-0 text-sm sm:text-base" />
+          <p className="text-left text-sm sm:text-base">
             While you wait, feel free to browse our website for more information about our services and solutions.
           </p>
         </div>
         
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        {/* Action Buttons - Stacked vertically on mobile */}
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <Link 
             href="/" 
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
+            className="flex items-center justify-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors text-sm sm:text-base"
           >
-            <FaHome /> Go Back to Home
+            <FaHome className="text-sm sm:text-base" /> Go Back to Home
           </Link>
           
           <Link 
-            href="/services" 
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-lg font-medium transition-colors border border-white/20"
+            href="/blog" 
+            className="flex items-center justify-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 hover:bg-white/20 rounded-lg font-medium transition-colors border border-white/20 text-sm sm:text-base"
           >
-            <FaEnvelope /> Explore Our Services
+            <FaBook className="text-sm sm:text-base" /> Read Our Blogs
           </Link>
         </div>
         
-        {/* Support Info */}
-        <div className="mt-10 pt-6 border-t border-white/10">
-          <p className="text-sm text-neutral-400">
-            Need immediate assistance? Call us at <a href="tel:+19296559561" className="text-blue-400 hover:underline">+1 (929) 655-9561</a>
+        {/* Support Info - Adjusted for mobile */}
+        <div className="mt-8 sm:mt-10 pt-4 sm:pt-6 border-t border-white/10">
+          <p className="text-xs sm:text-sm text-neutral-400">
+            Need immediate assistance?{" "}
+            <a 
+              href="tel:+19296559561" 
+              className="text-blue-400 hover:underline flex items-center justify-center sm:inline-flex gap-1 mt-1 sm:mt-0"
+            >
+              <FaPhone className="inline" /> +1 (929) 655-9561
+            </a>
           </p>
         </div>
       </div>
