@@ -85,7 +85,7 @@ export const MetricsDashboard = ({
               cy="50%"
               labelLine={false}
               label={renderCustomizedLabel}
-              outerRadius={60}
+              outerRadius={window.innerWidth < 640 ? 50 : 60}
               fill="#8884d8"
               dataKey="value"
             >
@@ -99,13 +99,19 @@ export const MetricsDashboard = ({
                 fontSize: '12px',
                 padding: '4px 8px',
                 borderRadius: '4px',
-                backgroundColor: 'rgba(0, 0, 0, 0.8)'
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                color: '#ffffff', // Explicitly set white text color
+                border: '1px solid #333' // Add border for better visibility
+              }}
+              itemStyle={{
+                color: 'rgb(136, 132, 216)' // Ensure items in tooltip are white
               }}
             />
             <Legend 
               wrapperStyle={{
                 fontSize: '12px',
-                paddingTop: '8px'
+                paddingTop: '8px',
+                color: '#ffffff' // Ensure legend text is visible
               }}
             />
           </PieChart>
@@ -236,7 +242,7 @@ export const MetricsDashboard = ({
         {services.map((service) => (
           <div
             key={service.service}
-            className={`bg-black/30 p-3 rounded-lg transition-all duration-200 ${
+            className={`bg-black/30 py-3 rounded-lg transition-all duration-200 ${
               hoveredService === service.service ? "ring-1 ring-blue-400 sm:scale-[1.02]" : ""
             }`}
             onMouseEnter={() => setHoveredService(service.service)}
