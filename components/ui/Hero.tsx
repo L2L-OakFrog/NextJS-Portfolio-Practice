@@ -99,13 +99,16 @@ const Hero = () => {
 
         {/* Right Column - Image */}
         <div className="max-w-md w-full">
-          <Image 
-            src="/ChatGPT Image May 5, 2025, 09_03_21 AM.png"
-            alt="Business Growth Illustration"
-            width={500}
-            height={300}
-            className="rounded-2xl shadow-xl border border-white/20"
-          />
+          {/* <div className="relative rounded-2xl shadow-xl border border-white/20 overflow-hidden" style={{ height: '400px' }}> */}
+          <div className="relative rounded-2xl shadow-xl overflow-hidden" style={{ height: '400px' }}>
+            <Image 
+              src="/ChatGPT Image May 5, 2025, 09_03_21 AM.png"
+              alt="Business Growth Illustration"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
         </div>
       </div>
 
