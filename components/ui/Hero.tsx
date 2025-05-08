@@ -9,6 +9,8 @@ import { IoMdMegaphone } from "react-icons/io";
 import { StatsSection } from "./StatsSection";
 import Image from 'next/image';
 import { MetricsDashboard } from "./MetricsDashboard";
+import ImageGrid from "./ImageGrid";
+import BPOBenefitsSection from "../BPOBenefitsSection";
 
 const stats = [
   { value: "10+", label: "Years Experience" },
@@ -27,7 +29,7 @@ const telemarketingMetrics = [
       { name: "Follow-up", value: 42, unit: "%", color: "#FFBB28" },
     ]
   },
-  {
+  /* {
     service: "Call Performance",
     chartType: "line" as const,
     metrics: [
@@ -37,7 +39,7 @@ const telemarketingMetrics = [
       { name: "Thu", value: 167 },
       { name: "Fri", value: 132 },
     ]
-  },
+  }, */
   {
     service: "Lead Sources",
     chartType: "pie" as const,
@@ -169,14 +171,30 @@ const Hero = () => {
         </div>
       </div>
 
+      <BPOBenefitsSection />
+
+      {/* <div className="relative z-10 py-12">
+        <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">
+          The Power of Phone Communication
+        </h3>
+        <ImageGrid 
+          images={[
+            { src: "/call-center.jpg", alt: "Call center team", title: "Professional Team" },
+            { src: "/conversion-chart.jpg", alt: "Conversion chart", title: "Proven Results" },
+            { src: "/happy-client.jpg", alt: "Happy client", title: "Satisfied Customers" },
+            { src: "/training.jpg", alt: "Agent training", title: "Continuous Training" },
+          ]}
+        />
+      </div> */}
+
       {/* Metrics Dashboard Section */}
-      <div className="relative z-10 py-6">
+      {/* <div className="relative z-10 py-6">
         <MetricsDashboard 
           services={telemarketingMetrics}
           title="Telemarketing Performance Metrics"
           description="Key indicators showing our campaign effectiveness"
         />
-      </div>
+      </div> */}
 
       {/* Stats Section */}
       <div className="relative z-10">
