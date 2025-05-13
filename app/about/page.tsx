@@ -65,7 +65,7 @@ export default function AboutPage() {
             <h3 className="text-lg font-bold">Vision Statement</h3>
           </div>
           <p className="text-sm">
-            Our vision at RingCenter Solutions is to become a global leader in telemarketing and lead conversion services, 
+            Our vision at Dialers Hub is to become a global leader in telemarketing and lead conversion services, 
             renowned for our excellence, reliability, and innovation. We aspire to redefine the telemarketing industry by 
             setting new standards of efficiency, transparency, and customer satisfaction.
           </p>
@@ -89,7 +89,7 @@ export default function AboutPage() {
             <h3 className="text-lg font-bold">Mission Statement</h3>
           </div>
           <p className="text-sm">
-            At RingCenter Solutions, our mission is to empower businesses with seamless and cost-effective telemarketing 
+            At Dialers Hub, our mission is to empower businesses with seamless and cost-effective telemarketing 
             services that drive measurable results. We strive to bridge the gap between potential and success by converting 
             leads into loyal customers through tailored strategies and exceptional service.
           </p>
@@ -397,7 +397,7 @@ export default function AboutPage() {
       
       <div className="py-6">
         <TextGenerateEffect 
-          words="About RingCenter Solutions" 
+          words="About Dialers Hub" 
           className="text-center text-2xl sm:text-3xl md:text-4xl font-bold"
         />
         

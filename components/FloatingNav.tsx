@@ -70,7 +70,7 @@ export const FloatingNav = ({
           </button>
 
           <div className="sm:hidden text-white font-medium px-2">
-            RINGCENTER
+            Dialers Hub
           </div>
 
           {/* Desktop Navigation */}

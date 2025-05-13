@@ -97,7 +97,7 @@ export default function ContactPage() {
             <h2 className="text-2xl font-bold mb-6">Ready to Maximize Your Leads?</h2>
             
             <form 
-              action="https://formsubmit.co/sharifanim66@gmail.com" 
+              action="https://formsubmit.co/sharif@dialershub.com" 
               method="POST"
               className="space-y-6"
               onSubmit={handleSubmit}
@@ -112,7 +112,7 @@ export default function ContactPage() {
                 {/* <input type="hidden" name="_replyto" value="noreply@yourdomain.com" /> */}
                 
               {/* Add your custom subject */}
-              <input type="hidden" name="_subject" value="New Email from TechConnect Website!" />
+              <input type="hidden" name="_subject" value="New Email from Dialers Hub Website!" />
               
               {/* Disable captcha */}
               <input type="hidden" name="_captcha" value="false" />
@@ -246,7 +246,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold mb-2">Company Name</h3>
-                  <p className="text-neutral-300">TechConnect Solutions Inc.</p>
+                  <p className="text-neutral-300">Dialers Hub</p>
                 </div>
               </div>
 
@@ -292,10 +292,10 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-bold mb-2">Email Us</h3>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                    <p className="text-neutral-300 break-all whitespace-normal">Sharifanim66@gmail.com</p>
+                    <p className="text-neutral-300 break-all whitespace-normal">sharif@dialershub.com</p>
                     <button 
                       className="text-blue-400 hover:text-blue-300 flex items-center gap-1 text-sm"
-                      onClick={() => navigator.clipboard.writeText('Sharifanim66@gmail.com')}
+                      onClick={() => navigator.clipboard.writeText('sharif@dialershub.com')}
                     >
                       <IoCopyOutline /> Copy
                     </button>

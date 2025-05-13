@@ -73,7 +73,7 @@ const Hero = () => {
         {/* Left Column - Main Content */}
         <div className="max-w-2xl flex flex-col items-center lg:items-start">
           <h2 className='uppercase tracking-widest text-blue-100 text-sm mb-4'>
-            RING CENTER SOLUTIONS
+            Dialers Hub
           </h2>
 
           <TextGenerateEffect

@@ -10,7 +10,7 @@ import { FloatingMessageIcon } from "@/components/FloatingMessageIcon";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "RingCenter Solutions",
+  title: "Dialers Hub",
   description: "Professional telemarketing company specializing in lead conversion for various industries, including solar, MCA, insurance, and real estate",
 };
 

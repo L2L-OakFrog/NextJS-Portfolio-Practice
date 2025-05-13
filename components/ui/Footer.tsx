@@ -8,7 +8,7 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">TechConnect Solutions</h3>
+            <h3 className="text-xl font-bold mb-4">Dialers Hub</h3>
             <p className="text-sm text-gray-400">
               A professional telemarketing company specializing in lead conversion for solar, MCA, insurance, and real estate industries.
             </p>
@@ -33,7 +33,7 @@ export const Footer = () => {
               </div>
               <div className="flex items-start gap-3">
                 <FaEnvelope className="mt-1 flex-shrink-0" size={14} />
-                <span>Sharifanim66@gmail.com</span>
+                <span>sharif@dialershub.com</span>
               </div>
             </address>
           </div>
@@ -75,7 +75,7 @@ export const Footer = () => {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <p className="text-sm text-gray-400">© {new Date().getFullYear()} TechConnect Solutions. All Rights Reserved.</p>
+            <p className="text-sm text-gray-400">© {new Date().getFullYear()} Dialers Hub. All Rights Reserved.</p>
           </div>
           <div className="flex items-center">
             <span className="text-sm text-gray-400 mr-2">Developed by OakFrog🐸</span>
