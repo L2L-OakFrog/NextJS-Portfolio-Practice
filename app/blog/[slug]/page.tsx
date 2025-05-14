@@ -48,8 +48,8 @@ export default function BlogDetails({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <main className="min-h-screen py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <main className="min-h-screen py-8 sm:py-12">
+      <div className="mx-auto">
         <div className="mb-6 sm:mb-8">
           <MagicButton
             title="Back to Blog"
