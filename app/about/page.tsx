@@ -41,7 +41,7 @@ export default function AboutPage() {
   
   // Professional image URLs from Unsplash
   const IMAGES = {
-    TEAM: '/TEAM.avif', // Make sure this file exists in your public folder
+    TEAM: '/TEAM.avif',
     VISION: '/VISION.avif',
     MISSION: '/MISSION.avif',
     OFFICE: '/OFFICE.avif',
@@ -88,7 +88,7 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold mb-4">Who We Are</h2>
               <p className="text-sm mb-6">
                 Dialers Hub is a premier telemarketing agency specializing in high-conversion lead generation 
-                strategies. Since 2015, we've helped businesses worldwide achieve 
+                strategies. Since 2015, we&apos;ve helped businesses worldwide achieve 
                 their growth objectives through data-driven outreach.
               </p>
             </div>
@@ -147,6 +147,7 @@ export default function AboutPage() {
                     alt="Early office"
                     fill
                     className="object-cover"
+                    priority
                   />
                 </div>
               </motion.div>
@@ -170,6 +171,7 @@ export default function AboutPage() {
                     alt="Team growth"
                     fill
                     className="object-cover"
+                    priority
                   />
                 </div>
               </motion.div>
@@ -236,96 +238,6 @@ export default function AboutPage() {
     },
 
     // Vision Section
-    /* {
-      title: "Our Vision",
-      description: "Redefining telemarketing excellence globally",
-      className: "md:col-span-2 col-span-3",
-      style: {
-        background: "linear-gradient(135deg, #1e40af 0%, #7c3aed 100%)",
-      },
-      minHeight: "min-h-[20rem]",
-      children: (
-        <div className="p-6 h-full flex flex-col">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <FaEye className="text-yellow-300 text-2xl" />
-              <h3 className="text-xl font-bold">Vision Statement</h3>
-            </div>
-            <p className="text-sm md:text-base">
-              Our vision at Dialers Hub is to become a global leader in telemarketing and lead conversion services, 
-              renowned for our excellence, reliability, and innovation. We aspire to redefine the telemarketing industry by 
-              setting new standards of efficiency, transparency, and customer satisfaction.
-            </p>
-          </motion.div>
-          <div className="mt-auto grid grid-cols-2 md:grid-cols-3 gap-3">
-            <div className="bg-black/30 p-3 rounded-lg border border-white/10">
-              <h4 className="font-medium text-blue-300">Excellence</h4>
-              <p className="text-xs mt-1">Unmatched service quality</p>
-            </div>
-            <div className="bg-black/30 p-3 rounded-lg border border-white/10">
-              <h4 className="font-medium text-blue-300">Innovation</h4>
-              <p className="text-xs mt-1">Cutting-edge solutions</p>
-            </div>
-            <div className="bg-black/30 p-3 rounded-lg border border-white/10 hidden md:block">
-              <h4 className="font-medium text-blue-300">Global Reach</h4>
-              <p className="text-xs mt-1">Worldwide impact</p>
-            </div>
-          </div>
-        </div>
-      ),
-    }, */
-
-    // Mission Section
-    /* {
-      title: "Our Mission",
-      description: "Empowering businesses through exceptional telemarketing",
-      className: "md:col-span-2 col-span-3",
-      style: {
-        background: "linear-gradient(135deg, #065f46 0%, #0d9488 100%)",
-      },
-      minHeight: "min-h-[20rem]",
-      children: (
-        <div className="p-6 h-full flex flex-col">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-6"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <FaBullseye className="text-blue-300 text-2xl" />
-              <h3 className="text-xl font-bold">Mission Statement</h3>
-            </div>
-            <p className="text-sm md:text-base">
-              At Dialers Hub, our mission is to empower businesses with seamless and cost-effective telemarketing 
-              services that drive measurable results. We strive to bridge the gap between potential and success by converting 
-              leads into loyal customers through tailored strategies and exceptional service.
-            </p>
-          </motion.div>
-          <div className="mt-auto grid grid-cols-2 md:grid-cols-3 gap-3">
-            <div className="bg-black/30 p-3 rounded-lg border border-white/10">
-              <h4 className="font-medium text-green-300">Empowerment</h4>
-              <p className="text-xs mt-1">Client success focus</p>
-            </div>
-            <div className="bg-black/30 p-3 rounded-lg border border-white/10">
-              <h4 className="font-medium text-green-300">Results</h4>
-              <p className="text-xs mt-1">Measurable impact</p>
-            </div>
-            <div className="bg-black/30 p-3 rounded-lg border border-white/10 hidden md:block">
-              <h4 className="font-medium text-green-300">Tailored</h4>
-              <p className="text-xs mt-1">Custom solutions</p>
-            </div>
-          </div>
-        </div>
-      ),
-    }, */
-
-    // Vision Section
     {
       title: "Our Vision",
       description: "Redefining telemarketing excellence globally",
@@ -338,13 +250,6 @@ export default function AboutPage() {
       minHeight: "min-h-[24rem]",
       children: (
         <div className="relative h-full overflow-hidden rounded-xl">
-          {/* Background Image */}
-          {/* <Image
-            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Vision background"
-            fill
-            className="object-cover absolute z-0"
-          /> */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/40 z-1"></div>
           
           <div className="relative z-10 h-full flex flex-col p-6">
@@ -379,6 +284,7 @@ export default function AboutPage() {
                     alt="Global network"
                     fill
                     className="object-cover"
+                    priority
                   />
                 </div>
                 <h4 className="font-medium text-blue-300">Global Leadership</h4>
@@ -397,6 +303,7 @@ export default function AboutPage() {
                     alt="Innovation"
                     fill
                     className="object-cover"
+                    priority
                   />
                 </div>
                 <h4 className="font-medium text-blue-300">Innovation</h4>
@@ -421,13 +328,6 @@ export default function AboutPage() {
       minHeight: "min-h-[24rem]",
       children: (
         <div className="relative h-full overflow-hidden rounded-xl">
-          {/* Background Image */}
-          {/* <Image
-            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80"
-            alt="Mission background"
-            fill
-            className="object-cover absolute z-0"
-          /> */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40 z-1"></div>
           
           <div className="relative z-10 h-full flex flex-col p-6">
@@ -463,6 +363,7 @@ export default function AboutPage() {
                       alt="Team working"
                       fill
                       className="object-cover"
+                      priority
                     />
                   </div>
                   <div className="md:w-2/3">
@@ -555,7 +456,6 @@ export default function AboutPage() {
             icon={<FaCommentAlt />}
             position="right"
             handleClick={() => router.push('/contact')}
-            // otherClasses="bg-white/10 hover:bg-white/20"
           />
         </div>
       ),
@@ -568,7 +468,7 @@ export default function AboutPage() {
       
       <div className="py-6">
         <TextGenerateEffect 
-          words="About Dialer&apos;s Hub"
+          words="About Dialer's Hub"
           className="text-center text-2xl sm:text-3xl md:text-4xl font-bold"
         />
         
