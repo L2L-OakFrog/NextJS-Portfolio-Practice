@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaPhone, FaEnvelope } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaPhone, FaEnvelope, FaClock } from "react-icons/fa";
 
 export const Footer = () => {
   return (
@@ -76,6 +76,12 @@ export const Footer = () => {
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-sm text-gray-400">© {new Date().getFullYear()} Dialers Hub. All Rights Reserved.</p>
+          </div>
+          <div className="mb-4 md:mb-0 text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start gap-1 mt-1">
+              <FaClock className="text-gray-500" size={12} />
+              <p className="text-xs text-gray-500">Version: {process.env.NEXT_PUBLIC_BUILD_VERSION?.replace(/--/g, '-')}</p>
+            </div>
           </div>
           <div className="flex items-center">
             <span className="text-sm text-gray-400 mr-2">Developed by OakFrog🐸</span>
