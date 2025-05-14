@@ -568,8 +568,7 @@ export default function AboutPage() {
       
       <div className="py-6">
         <TextGenerateEffect 
-          words="About Dialer&apos;s Hub"
-          // words={'About Dialer\'s Hub'}
+          words={'About Dialer\'s Hub'}
           className="text-center text-2xl sm:text-3xl md:text-4xl font-bold"
         />
         
