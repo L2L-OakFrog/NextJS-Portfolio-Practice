@@ -1,20 +1,18 @@
 // AboutPage.tsx
 'use client';
-import { BentoGrid } from "@/components/ui/BentoGrid2";
-import { BentoGridItem } from "@/components/ui/BentoGridItem";
+import Image from "next/image";
 import dynamic from "next/dynamic";
-import MagicButton from "@/components/ui/MagicButton";
-import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
-import { FaCommentAlt, FaCrown, FaHome, FaHospital, FaLightbulb, FaBullseye, FaEye, FaChartLine } from "react-icons/fa";
-import { GiAirBalloon, GiMechanicGarage, GiWindyStripes } from "react-icons/gi";
-import { IoMdRocket, IoMdFlash } from "react-icons/io";
-import Link from "next/link";
-import { IoMdMegaphone } from "react-icons/io";
+import { motion } from "framer-motion";
+import { GiGrowth } from "react-icons/gi";
+import { IoMdRocket } from "react-icons/io";
 import { useRouter } from "next/navigation";
-import { SuccessMetrics } from "@/components/ui/SuccessMetrics";
-import CoreValues from "@/components/ui/CoreValues";
-import VideoGallery from "@/components/ui/VideoGallery";
+import MagicButton from "@/components/ui/MagicButton";
 import { Spotlight } from "@/components/ui/Spotlight";
+import { BentoGrid } from "@/components/ui/BentoGrid2";
+import VideoGallery from "@/components/ui/VideoGallery";
+import { BentoGridItem } from "@/components/ui/BentoGridItem";
+import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
+import { FaCommentAlt, FaLightbulb, FaChartLine, FaHandshake, FaUsers, FaBullseye, FaEye } from "react-icons/fa";
 
 const GlobeDemo = dynamic(
   () => import("@/components/ui/GridGlobe").then((mod) => mod.GlobeDemo as React.ComponentType<any>),
@@ -38,37 +36,374 @@ type AboutItem = {
   minHeight?: string;
 };
 
-const StatBadge = ({ value, label }: { value: string; label: string }) => (
-  <div className="bg-black/40 p-2 rounded text-center">
-    <div className="font-bold text-sm">{value}</div>
-    <div className="text-xs opacity-80">{label}</div>
-  </div>
-);
-
 export default function AboutPage() {
   const router = useRouter();
+  
+  // Professional image URLs from Unsplash
+  const IMAGES = {
+    TEAM: '/TEAM.avif', // Make sure this file exists in your public folder
+    VISION: '/VISION.avif',
+    MISSION: '/MISSION.avif',
+    OFFICE: '/OFFICE.avif',
+    GROWTH: '/GROWTH.avif',
+    MODERN: '/MODERN.avif',
+    GlobalNetwork: '/GlobalNetwork.avif',
+    Innovation: '/Innovation.avif',
+    CONVERSION_GRAPH: '/conversion-graph.jpg',
+    SALES_GROWTH: '/sales-growth-chart.jpg',
+    POWER_OF_CALL: '/power-of-call-banner.jpg'
+  };
+
+  const ValueCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
+    <motion.div 
+      className="bg-gradient-to-br from-black/30 to-black/20 p-4 rounded-xl border border-white/10 backdrop-blur-sm"
+      whileHover={{ y: -5 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      <div className="flex items-center gap-3 mb-2">
+        <div className="text-xl text-blue-400">{icon}</div>
+        <h4 className="font-bold">{title}</h4>
+      </div>
+      <p className="text-sm opacity-90">{description}</p>
+    </motion.div>
+  );
 
   const aboutItems: AboutItem[] = [
-    // Vision Section
+    // Combined About Section
     {
+      title: "",
+      description: "",
+      className: "md:col-span-4 col-span-4",
+      style: {
+        background: `linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.9)), url(${IMAGES.TEAM})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      },
+      minHeight: "min-h-[32rem]",
+      children: (
+        <div className="flex flex-col md:flex-row h-full gap-6 p-6">
+          {/* Left Column - Our Journey (shows second on mobile) */}
+          <div className="w-full md:w-1/3 flex flex-col gap-6">
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Who We Are</h2>
+              <p className="text-sm mb-6">
+                Dialers Hub is a premier telemarketing agency specializing in high-conversion lead generation 
+                strategies. Since 2015, we've helped businesses worldwide achieve 
+                their growth objectives through data-driven outreach.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <FaChartLine className="text-blue-300" />
+                Our Core Values
+              </h3>
+              <div className="grid grid-cols-1 gap-3">
+                <ValueCard 
+                  icon={<IoMdRocket />}
+                  title="Efficiency"
+                  description="Optimized processes for maximum results"
+                />
+                <ValueCard 
+                  icon={<FaLightbulb />}
+                  title="Innovation"
+                  description="Cutting-edge technology solutions"
+                />
+                <ValueCard 
+                  icon={<FaUsers />}
+                  title="Customer Focus"
+                  description="Tailored solutions for each client"
+                />
+                <ValueCard 
+                  icon={<FaChartLine />}
+                  title="Transparency"
+                  description="Clear reporting and honest communication"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - About & Core Values (shows first on mobile) */}
+          <div className="w-full md:w-2/3">
+            <h2 className="text-2xl font-bold mb-6">Our Journey</h2>
+            
+            <div className="space-y-6">
+              {/* 2015 */}
+              <motion.div 
+                className="bg-black/30 p-5 rounded-xl border border-white/10"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <FaLightbulb className="text-yellow-400" />
+                  <h4 className="font-bold">Founded in 2015</h4>
+                </div>
+                <p className="text-sm mb-4">
+                  Started with a small team of passionate telemarketing professionals.
+                </p>
+                <div className="relative h-40 rounded-lg overflow-hidden">
+                  <Image 
+                    src={IMAGES.OFFICE}
+                    alt="Early office"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </motion.div>
+
+              {/* Growth */}
+              <motion.div 
+                className="bg-black/30 p-5 rounded-xl border border-white/10"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <GiGrowth className="text-green-400" />
+                  <h4 className="font-bold">Rapid Growth</h4>
+                </div>
+                <p className="text-sm mb-4">
+                  Expanded to serve 450+ clients across multiple industries.
+                </p>
+                <div className="relative h-40 rounded-lg overflow-hidden">
+                  <Image 
+                    src={IMAGES.GROWTH}
+                    alt="Team growth"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </motion.div>
+
+              {/* Today & Beyond */}
+              {/* <motion.div 
+                className="bg-black/30 p-5 rounded-xl border border-white/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <IoMdRocket className="text-blue-400" />
+                  <h4 className="font-bold">Today & Beyond</h4>
+                </div>
+                <p className="text-sm mb-4">
+                  Recognized as a trusted partner with 35% average conversion boost.
+                  Now expanding our services to include AI-powered lead qualification.
+                </p>
+                <div className="relative h-40 rounded-lg overflow-hidden">
+                  <Image 
+                    src={IMAGES.MODERN}
+                    alt="Modern office"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <span className="bg-blue-900/50 px-2 py-1 rounded text-xs">AI Integration</span>
+                  <span className="bg-blue-900/50 px-2 py-1 rounded text-xs">Global Expansion</span>
+                  <span className="bg-blue-900/50 px-2 py-1 rounded text-xs">Enhanced Analytics</span>
+                </div>
+              </motion.div> */}
+
+              {/* Future Vision */}
+              {/* <motion.div 
+                className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 p-5 rounded-xl border border-white/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <FaChartLine className="text-purple-400" />
+                  <h4 className="font-bold">Future Vision</h4>
+                </div>
+                <p className="text-sm mb-4">
+                  Pioneering the next generation of telemarketing solutions with predictive analytics
+                  and machine learning to deliver even higher conversion rates for our clients.
+                </p>
+                <div className="grid grid-cols-2 gap-2 mt-4">
+                  <div className="bg-black/30 p-2 rounded text-center">
+                    <div className="font-bold text-sm">+50%</div>
+                    <div className="text-xs opacity-80">Target Conversion</div>
+                  </div>
+                  <div className="bg-black/30 p-2 rounded text-center">
+                    <div className="font-bold text-sm">25+</div>
+                    <div className="text-xs opacity-80">New Markets</div>
+                  </div>
+                </div>
+              </motion.div> */}
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // Vision Section
+    /* {
       title: "Our Vision",
       description: "Redefining telemarketing excellence globally",
-      className: "md:col-span-1 col-span-3",
+      className: "md:col-span-2 col-span-3",
       style: {
         background: "linear-gradient(135deg, #1e40af 0%, #7c3aed 100%)",
       },
       minHeight: "min-h-[20rem]",
       children: (
-        <div className="p-4">
-          <div className="flex items-center gap-3 mb-4">
-            <FaEye className="text-yellow-300 text-xl" />
-            <h3 className="text-lg font-bold">Vision Statement</h3>
+        <div className="p-6 h-full flex flex-col">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="mb-6"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <FaEye className="text-yellow-300 text-2xl" />
+              <h3 className="text-xl font-bold">Vision Statement</h3>
+            </div>
+            <p className="text-sm md:text-base">
+              Our vision at Dialers Hub is to become a global leader in telemarketing and lead conversion services, 
+              renowned for our excellence, reliability, and innovation. We aspire to redefine the telemarketing industry by 
+              setting new standards of efficiency, transparency, and customer satisfaction.
+            </p>
+          </motion.div>
+          <div className="mt-auto grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="bg-black/30 p-3 rounded-lg border border-white/10">
+              <h4 className="font-medium text-blue-300">Excellence</h4>
+              <p className="text-xs mt-1">Unmatched service quality</p>
+            </div>
+            <div className="bg-black/30 p-3 rounded-lg border border-white/10">
+              <h4 className="font-medium text-blue-300">Innovation</h4>
+              <p className="text-xs mt-1">Cutting-edge solutions</p>
+            </div>
+            <div className="bg-black/30 p-3 rounded-lg border border-white/10 hidden md:block">
+              <h4 className="font-medium text-blue-300">Global Reach</h4>
+              <p className="text-xs mt-1">Worldwide impact</p>
+            </div>
           </div>
-          <p className="text-sm">
-            Our vision at Dialers Hub is to become a global leader in telemarketing and lead conversion services, 
-            renowned for our excellence, reliability, and innovation. We aspire to redefine the telemarketing industry by 
-            setting new standards of efficiency, transparency, and customer satisfaction.
-          </p>
+        </div>
+      ),
+    }, */
+
+    // Mission Section
+    /* {
+      title: "Our Mission",
+      description: "Empowering businesses through exceptional telemarketing",
+      className: "md:col-span-2 col-span-3",
+      style: {
+        background: "linear-gradient(135deg, #065f46 0%, #0d9488 100%)",
+      },
+      minHeight: "min-h-[20rem]",
+      children: (
+        <div className="p-6 h-full flex flex-col">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-6"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <FaBullseye className="text-blue-300 text-2xl" />
+              <h3 className="text-xl font-bold">Mission Statement</h3>
+            </div>
+            <p className="text-sm md:text-base">
+              At Dialers Hub, our mission is to empower businesses with seamless and cost-effective telemarketing 
+              services that drive measurable results. We strive to bridge the gap between potential and success by converting 
+              leads into loyal customers through tailored strategies and exceptional service.
+            </p>
+          </motion.div>
+          <div className="mt-auto grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="bg-black/30 p-3 rounded-lg border border-white/10">
+              <h4 className="font-medium text-green-300">Empowerment</h4>
+              <p className="text-xs mt-1">Client success focus</p>
+            </div>
+            <div className="bg-black/30 p-3 rounded-lg border border-white/10">
+              <h4 className="font-medium text-green-300">Results</h4>
+              <p className="text-xs mt-1">Measurable impact</p>
+            </div>
+            <div className="bg-black/30 p-3 rounded-lg border border-white/10 hidden md:block">
+              <h4 className="font-medium text-green-300">Tailored</h4>
+              <p className="text-xs mt-1">Custom solutions</p>
+            </div>
+          </div>
+        </div>
+      ),
+    }, */
+
+    // Vision Section
+    {
+      title: "Our Vision",
+      description: "Redefining telemarketing excellence globally",
+      className: "md:col-span-2 col-span-3",
+      style: {
+        background: `linear-gradient(135deg, rgba(30, 64, 175, 0.8) 0%, rgba(124, 58, 237, 0.8) 100%), url(${IMAGES.VISION})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      },
+      minHeight: "min-h-[24rem]",
+      children: (
+        <div className="relative h-full overflow-hidden rounded-xl">
+          {/* Background Image */}
+          {/* <Image
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Vision background"
+            fill
+            className="object-cover absolute z-0"
+          /> */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/40 z-1"></div>
+          
+          <div className="relative z-10 h-full flex flex-col p-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-blue-500/20 rounded-full">
+                  <FaEye className="text-yellow-300 text-xl" />
+                </div>
+                <h3 className="text-xl font-bold">Vision Statement</h3>
+              </div>
+              <p className="text-sm md:text-base backdrop-blur-sm bg-black/30 p-4 rounded-lg">
+                Our vision at Dialers Hub is to become a global leader in telemarketing and lead conversion services, 
+                renowned for our excellence, reliability, and innovation.
+              </p>
+            </motion.div>
+
+            <div className="mt-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="bg-black/50 p-3 rounded-lg border border-white/10 backdrop-blur-sm"
+              >
+                <div className="relative h-24 mb-2 rounded-md overflow-hidden">
+                  <Image 
+                    src={IMAGES.GlobalNetwork}
+                    alt="Global network"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h4 className="font-medium text-blue-300">Global Leadership</h4>
+                <p className="text-xs">Expanding to 25+ countries</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="bg-black/50 p-3 rounded-lg border border-white/10 backdrop-blur-sm"
+              >
+                <div className="relative h-24 mb-2 rounded-md overflow-hidden">
+                  <Image 
+                    src={IMAGES.Innovation}
+                    alt="Innovation"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h4 className="font-medium text-blue-300">Innovation</h4>
+                <p className="text-xs">AI-powered solutions</p>
+              </motion.div>
+            </div>
+          </div>
         </div>
       ),
     },
@@ -77,209 +412,86 @@ export default function AboutPage() {
     {
       title: "Our Mission",
       description: "Empowering businesses through exceptional telemarketing",
-      className: "md:col-span-1 col-span-3",
+      className: "md:col-span-2 col-span-3",
       style: {
-        background: "linear-gradient(135deg, #065f46 0%, #0d9488 100%)",
-      },
-      minHeight: "min-h-[20rem]",
-      children: (
-        <div className="py-4">
-          <div className="flex items-center gap-3 mb-4">
-            <FaBullseye className="text-blue-300 text-xl" />
-            <h3 className="text-lg font-bold">Mission Statement</h3>
-          </div>
-          <p className="text-sm">
-            At Dialers Hub, our mission is to empower businesses with seamless and cost-effective telemarketing 
-            services that drive measurable results. We strive to bridge the gap between potential and success by converting 
-            leads into loyal customers through tailored strategies and exceptional service.
-          </p>
-        </div>
-      ),
-    },
-
-    // Core Values
-    {
-      title: "Core Values",
-      description: "The principles that guide our work",
-      className: "md:col-span-1 col-span-3",
-      style: {
-        background: "linear-gradient(135deg, #7e22ce 0%, #c026d3 100%)",
-      },
-      minHeight: "min-h-[20rem]",
-      children: <CoreValues />,
-    },
-
-    // Our Story
-    {
-      title: "Our Story",
-      description: "From humble beginnings to industry leaders",
-      className: "md:col-span-3 col-span-3",
-      style: {
-        background: "linear-gradient(135deg, #1e3a8a 0%, #7e22ce 100%)",
-      },
-      minHeight: "min-h-[16rem]",
-      children: (
-        <div className="py-4">
-          <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-black/20 p-4 rounded-lg">
-              <h4 className="font-bold flex items-center gap-2 mb-2">
-                <FaLightbulb className="text-yellow-400" />
-                Founded
-              </h4>
-              <p className="text-sm">
-                Established in 2015 with a small team of passionate telemarketing professionals.
-              </p>
-            </div>
-            <div className="bg-black/20 p-4 rounded-lg">
-              <h4 className="font-bold flex items-center gap-2 mb-2">
-                <FaChartLine className="text-green-400" />
-                Growth
-              </h4>
-              <p className="text-sm">
-                Expanded to serve 450+ clients across multiple industries worldwide.
-              </p>
-            </div>
-            <div className="bg-black/20 p-4 rounded-lg">
-              <h4 className="font-bold flex items-center gap-2 mb-2">
-                <IoMdRocket className="text-blue-400" />
-                Today
-              </h4>
-              <p className="text-sm">
-                Recognized as a trusted partner for lead conversion with 35% average conversion boost.
-              </p>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    /* {
-      title: "Success Metrics",
-      description: "Documented campaign results:",
-      className: "md:col-span-3 col-span-3",
-      style: {
-        background: "linear-gradient(135deg, #4c1d95 0%, #701a75 100%)",
-      },
-      minHeight: "min-h-[20rem] md:min-h-[24rem]",
-      children: (
-        <div className="flex flex-col h-full p-2">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-4">
-            <div className="bg-black/30 p-3 rounded-lg">
-              <h4 className="font-bold text-blue-400 text-sm sm:text-base">Solar Campaign</h4>
-              <p className="text-xs sm:text-sm mt-1">45% increase in qualified leads</p>
-            </div>
-            <div className="bg-black/30 p-3 rounded-lg">
-              <h4 className="font-bold text-blue-400 text-sm sm:text-base">MCA Campaign</h4>
-              <p className="text-xs sm:text-sm mt-1">35% improvement in approvals</p>
-            </div>
-            <div className="bg-black/30 p-3 rounded-lg">
-              <h4 className="font-bold text-blue-400 text-sm sm:text-base">Real Estate</h4>
-              <p className="text-xs sm:text-sm mt-1">50% higher conversion rate</p>
-            </div>
-          </div>
-        </div>
-      ),
-    }, */
-
-    // Success Metrics
-    {
-      title: "Success Metrics",
-      description: "Documented campaign results across our specialties:",
-      className: "md:col-span-3 col-span-3",
-      style: {
-        background: "linear-gradient(135deg, #4c1d95 0%, #701a75 100%)",
+        background: `linear-gradient(135deg, rgba(6, 95, 70, 0.8) 0%, rgba(13, 148, 136, 0.8) 100%), url(${IMAGES.MISSION})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
       },
       minHeight: "min-h-[24rem]",
       children: (
-        <div className="flex flex-col h-full py-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-4">
-            {/* MCA Financing */}
-            <div className="bg-black/30 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <FaCrown className="text-yellow-400" size={18} />
-                <h4 className="font-bold text-blue-400 text-sm sm:text-base">MCA Financing</h4>
+        <div className="relative h-full overflow-hidden rounded-xl">
+          {/* Background Image */}
+          {/* <Image
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80"
+            alt="Mission background"
+            fill
+            className="object-cover absolute z-0"
+          /> */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40 z-1"></div>
+          
+          <div className="relative z-10 h-full flex flex-col p-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-teal-500/20 rounded-full">
+                  <FaBullseye className="text-blue-300 text-xl" />
+                </div>
+                <h3 className="text-xl font-bold">Mission Statement</h3>
               </div>
-              <div className="grid grid-cols-2 gap-2">
-                <StatBadge value="94%" label="Conv. Rate" />
-                <StatBadge value="$5.8M" label="Funded" />
-                <StatBadge value="7+" label="Deals/Mo" />
-              </div>
-            </div>
+              <p className="text-sm md:text-base backdrop-blur-sm bg-black/30 p-4 rounded-lg">
+                At Dialers Hub, our mission is to empower businesses with seamless telemarketing 
+                services that drive measurable results through tailored strategies.
+              </p>
+            </motion.div>
 
-            {/* Air Duct Cleaning */}
-            <div className="bg-black/30 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <GiAirBalloon className="text-blue-400" size={18} />
-                <h4 className="font-bold text-blue-400 text-sm sm:text-base">Air Duct Cleaning</h4>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <StatBadge value="3-4" label="Sales/Day" />
-                <StatBadge value="1wk" label="First Results" />
-              </div>
-            </div>
-
-            {/* Solar Energy */}
-            <div className="bg-black/30 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <IoMdRocket className="text-yellow-400" size={18} />
-                <h4 className="font-bold text-blue-400 text-sm sm:text-base">Solar Energy</h4>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <StatBadge value="78%" label="Conv. Rate" />
-                <StatBadge value="450+" label="Leads" />
-              </div>
-            </div>
-
-            {/* LED Lighting */}
-            <div className="bg-black/30 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <IoMdFlash className="text-blue-400" size={18} />
-                <h4 className="font-bold text-blue-400 text-sm sm:text-base">LED Lighting</h4>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <StatBadge value="85%" label="Adoption" />
-                <StatBadge value="1.2K" label="Installs" />
-              </div>
-            </div>
-
-            {/* Home Improvement */}
-            <div className="bg-black/30 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <FaHome className="text-green-400" size={18} />
-                <h4 className="font-bold text-blue-400 text-sm sm:text-base">Home Improvement</h4>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <StatBadge value="65%" label="Conv. Rate" />
-                <StatBadge value="320+" label="Projects" />
-              </div>
-            </div>
-
-            {/* MEP Services */}
-            <div className="bg-black/30 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <GiMechanicGarage className="text-orange-400" size={18} />
-                <h4 className="font-bold text-blue-400 text-sm sm:text-base">MEP Services</h4>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <StatBadge value="7+" label="Designs/Mo" />
-                <StatBadge value="89%" label="Satisfaction" />
-              </div>
+            <div className="mt-auto">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="bg-black/50 p-4 rounded-lg border border-white/10 backdrop-blur-sm"
+              >
+                <div className="flex flex-col md:flex-row gap-4">
+                  <div className="relative h-32 md:h-auto md:w-1/3 rounded-md overflow-hidden">
+                    <Image 
+                      src={IMAGES.OFFICE}
+                      alt="Team working"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="md:w-2/3">
+                    <h4 className="font-bold text-green-300 mb-2">Our Approach</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="bg-green-900/20 p-2 rounded">
+                        <p className="text-xs font-medium">Data-Driven</p>
+                      </div>
+                      <div className="bg-green-900/20 p-2 rounded">
+                        <p className="text-xs font-medium">Client-Focused</p>
+                      </div>
+                      <div className="bg-green-900/20 p-2 rounded">
+                        <p className="text-xs font-medium">Results-Oriented</p>
+                      </div>
+                      <div className="bg-green-900/20 p-2 rounded">
+                        <p className="text-xs font-medium break-all">Transparent</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
-          {/* <div className="mt-auto">
-            <MagicButton
-              title="View All Campaigns"
-              icon={<IoMdMegaphone />}
-              position="right"
-              otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 w-full text-sm"
-              handleClick={() => router.push('/campaigns')}
-            />
-          </div> */}
         </div>
       ),
     },
 
     // Video Gallery
-    {
+    /* {
       title: "In Action",
       description: "See our work and client testimonials",
       className: "md:col-span-3 col-span-3",
@@ -288,70 +500,12 @@ export default function AboutPage() {
       },
       minHeight: "min-h-[24rem]",
       children: <VideoGallery />,
-    },
-    /* {
-      title: "Performance Metrics",
-      description: "Detailed metrics across all services",
-      className: "md:col-span-3 col-span-3",
-      style: {
-        background: "linear-gradient(135deg, #4c1d95 0%, #701a75 100%)",
-      },
-      minHeight: "min-h-[24rem] md:min-h-[28rem]",
-      children: (
-        <div className="flex flex-col h-full p-4">
-          <MetricsDashboard
-            title="Service Performance"
-            description="Key metrics across all our service offerings"
-            services={[
-              {
-                service: "MCA Financing",
-                chartType: "",
-                metrics: [
-                  { name: "Finance Amount", value: 100, unit: "K" },
-                  { name: "Approval Rate", value: 94, unit: "%" },
-                  { name: "Deals/Month", value: 7 },
-                  { name: "Avg. Funding", value: 58, unit: "K" },
-                ],
-              },{
-            service: "Business Loans",
-            chartType: "bar",
-            metrics: [
-              { name: "Funded Amount", value: 75, unit: "K" },
-              { name: "Deals/Month", value: 5 },
-              { name: "Approval Rate", value: 82, unit: "%" },
-              { name: "Avg. Funding", value: 42, unit: "K" },
-            ],
-          },
-              {
-                service: "Solar Energy",
-                chartType: "line",
-                metrics: [
-                  { name: "Loss in Generation", value: 450 },
-                  { name: "Installations", value: 120 },
-                  { name: "Conversion", value: 78, unit: "%" },
-                  { name: "Avg. Savings", value: 150, unit: "/mo" },
-                ],
-              },
-              {
-                service: "Home Improvement",
-                chartType: "pie",
-                metrics: [
-                  { name: "Projects", value: 320 },
-                  { name: "Conversion", value: 65, unit: "%" },
-                  { name: "Avg. Value", value: 45, unit: "K" },
-                  { name: "Repeat Clients", value: 42, unit: "%" },
-                ],
-              },
-            ]}
-          />
-        </div>
-      ),
     }, */
 
-    //Global Reach
+    // Global Reach
     {
       title: "Global Reach",
-      description: "Serving clients worldwide with our expert network across 25+ countries",
+      description: "Serving clients across 25+ countries",
       className: "md:col-span-2 col-span-3 relative",
       style: {
         background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
@@ -362,30 +516,47 @@ export default function AboutPage() {
           <GlobeDemo />
         </div>
       ),
+      children: (
+        <div className="relative z-10 p-6">
+          <div className="bg-black/50 rounded-lg p-4 max-w-md">
+            <h3 className="text-xl font-bold mb-3">Our Worldwide Network</h3>
+            <p className="text-sm mb-4">
+              With agents and partners across North America, Europe, and Asia, we deliver localized 
+              telemarketing solutions with global expertise.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="bg-blue-900/50 px-2 py-1 rounded text-xs">United States</span>
+              <span className="bg-blue-900/50 px-2 py-1 rounded text-xs">Canada</span>
+              <span className="bg-blue-900/50 px-2 py-1 rounded text-xs">UK</span>
+            </div>
+          </div>
+        </div>
+      ),
     },
 
     // Get Started
     {
-      title: "Get Started",
-      description: "Contact us today:",
-      className: "md:col-span-1 col-span-3 p-3 sm:p-4",
+      title: "Ready to Grow?",
+      description: "Let's start a conversation about your needs",
+      className: "md:col-span-1 col-span-3",
       style: {
         background: "linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%)",
       },
-      minHeight: "min-h-[12rem] md:min-h-[16rem]",
+      minHeight: "min-h-[16rem]",
       children: (
-        <div className="flex flex-col h-full justify-end p-4">
-          {/* <MagicButton
-            title="Contact Us"
-            icon={<FaCommentAlt size={18} />}
+        <div className="flex flex-col items-center justify-center h-full p-6 text-center">
+          <FaHandshake className="text-4xl mb-4 text-white/90" />
+          <h3 className="text-xl font-bold mb-3">Partner With Us</h3>
+          <p className="text-sm mb-6">
+            Discover how our proven telemarketing solutions can drive your business growth.
+          </p>
+          <MagicButton
+            title="Contact Our Team"
+            icon={<FaCommentAlt />}
             position="right"
             handleClick={() => router.push('/contact')}
-            otherClasses="w-full"
-          /> */}
-          <Link href="/contact" className="flex items-center justify-center gap-2 text-white hover:text-blue-300 transition-colors">
-            <FaCommentAlt size={18} />
-            <span className="text-sm sm:text-base">Contact Form</span>
-          </Link>
+            // otherClasses="bg-white/10 hover:bg-white/20"
+          />
         </div>
       ),
     },
@@ -397,16 +568,12 @@ export default function AboutPage() {
       
       <div className="py-6">
         <TextGenerateEffect 
-          words="About Dialers Hub" 
+          words="About Dialer's Hub" 
           className="text-center text-2xl sm:text-3xl md:text-4xl font-bold"
         />
         
         <div className="mt-6">
-          <BentoGrid 
-            cols={3} 
-            gap="md" 
-            className=""
-          >
+          <BentoGrid cols={3} gap="md">
             {aboutItems.map((item, i) => (
               <BentoGridItem
                 key={i}

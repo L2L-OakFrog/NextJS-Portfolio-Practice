@@ -31,6 +31,7 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: false, // set to true only if you need SVG handling
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    domains: ['images.unsplash.com'],
   },
   
   // Enable React Strict Mode for additional checks
