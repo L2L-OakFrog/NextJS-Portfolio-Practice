@@ -10,8 +10,15 @@ import { FloatingMessageIcon } from "@/components/FloatingMessageIcon";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dialers Hub",
-  description: "Professional telemarketing company specializing in lead conversion for various industries, including solar, MCA, insurance, and real estate",
+  title: "Dialers Hub | Professional Telemarketing & Lead Conversion Services",
+  description: "Boost your sales with Dialers Hub's expert telemarketing services. Specializing in solar, MCA financing, insurance, and real estate lead generation with proven 35%+ conversion rates.",
+  keywords: ["telemarketing", "lead generation", "call center", "solar leads", "MCA financing"],
+  openGraph: {
+    images: '/opengraph-image.jpg',
+  },
+  alternates: {
+    canonical: 'https://dialershub.com',
+  }
 };
 
 export default function RootLayout({
