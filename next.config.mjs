@@ -39,6 +39,7 @@ const nextConfig = {
   // Environment variables
   env: {
     NEXT_PUBLIC_BUILD_VERSION: `v${new Date().toLocaleString('en-US', {
+      timeZone: 'America/New_York',
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
