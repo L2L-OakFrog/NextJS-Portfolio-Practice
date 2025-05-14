@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { useState, useEffect } from "react";
+import blogData from '../../data/blog-data.json';
 
 type BlogPost = {
   id: string;
@@ -18,6 +19,12 @@ type BlogPost = {
     label: string;
   }[];
   featured?: boolean;
+  content?: string[];
+  author?: string;
+  sections?: {
+    title: string;
+    content: string[];
+  }[];
 };
 
 export default function BlogPage() {
@@ -25,87 +32,13 @@ export default function BlogPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const blogPosts: BlogPost[] = [
-    {
-      id: "1",
-      title: "Maximizing Lead Conversion in Financial Services",
-      excerpt: "Proven strategies to boost your MCA financing conversion rates beyond 90%",
-      category: "Finance",
-      date: "May 15, 2024",
-      readTime: "8 min read",
-      stats: [
-        { value: "12K", label: "Views" },
-        { value: "94%", label: "Engagement" }
-      ],
-      featured: true
-    },
-    {
-      id: "2",
-      title: "The Future of Solar Energy in Australia",
-      excerpt: "How government initiatives are shaping the renewable energy market",
-      category: "Energy",
-      date: "April 28, 2024",
-      readTime: "6 min read",
-      stats: [
-        { value: "3K", label: "Views" },
-        { value: "78%", label: "Engagement" }
-      ]
-    },
-    {
-      id: "3",
-      title: "Energy Efficiency Programs That Work",
-      excerpt: "Case studies from successful LED lighting and exhaust fan campaigns",
-      category: "Sustainability",
-      date: "April 10, 2024",
-      readTime: "5 min read",
-      stats: [
-        { value: "3K", label: "Views" },
-        { value: "82%", label: "Engagement" }
-      ]
-    },
-    {
-      id: "4",
-      title: "Home Improvement Marketing in 2024",
-      excerpt: "What homeowners really want from remodeling services",
-      category: "Marketing",
-      date: "March 22, 2024",
-      readTime: "7 min read",
-      stats: [
-        { value: "7K", label: "Views" },
-        { value: "85%", label: "Engagement" }
-      ]
-    },
-    {
-      id: "5",
-      title: "B2B Service Selling Techniques",
-      excerpt: "How we increased MEP service contracts by 40%",
-      category: "Business",
-      date: "March 5, 2024",
-      readTime: "9 min read",
-      stats: [
-        { value: "3K", label: "Views" },
-        { value: "78%", label: "Engagement" }
-      ]
-    },
-    {
-      id: "6",
-      title: "Healthcare Marketing Compliance",
-      excerpt: "Navigating Medicaid services advertising regulations",
-      category: "Healthcare",
-      date: "February 18, 2024",
-      readTime: "10 min read",
-      stats: [
-        { value: "3.8K", label: "Views" },
-        { value: "95%", label: "Engagement" }
-      ]
-    }
-  ];
+  const blogPosts: BlogPost[] = blogData.posts;
 
   // Make sure featured post is first in the array
   const carouselPosts = [...blogPosts].sort((a, b) => (b.featured ? 1 : -1));
 
   const navigateToPost = (title: string) => {
-    router.push(`/blog/${title.toLowerCase().replace(/\s+/g, '-')}`);
+    router.push(`/blog/${title.toLowerCase().replace(/\s+/g, '-').replace(/\|/g, '').replace(/[^\w-]+/g, '')}`);
   };
 
   const nextSlide = () => {
@@ -251,7 +184,7 @@ export default function BlogPage() {
                 </div>
                 <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 line-clamp-2">{post.title}</h3>
                 <p className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-5 line-clamp-2">{post.excerpt}</p>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center mb-3">
                   <div className="flex gap-1 sm:gap-2">
                     {post.stats.slice(0, 2).map((stat, index) => (
                       <div key={index} className="bg-slate-800/50 px-2 py-1 rounded text-xs">
@@ -271,23 +204,6 @@ export default function BlogPage() {
             </div>
           ))}
         </div>
-        {/* Newsletter CTA */}
-        {/* <div className="mt-12 sm:mt-16 bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 text-center">
-          <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Stay Updated</h3>
-          <p className="text-xs sm:text-sm text-gray-400 max-w-2xl mx-auto mb-4 sm:mb-6 px-2 sm:px-0">
-            Subscribe to receive the latest marketing insights and strategies directly to your inbox
-          </p>
-          <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-2 px-2 sm:px-0">
-            <input 
-              type="email" 
-              placeholder="Your email address" 
-              className="flex-1 bg-slate-700/50 border border-slate-700 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors">
-              Subscribe
-            </button>
-          </div>
-        </div> */}
       </div>
     </main>
   );

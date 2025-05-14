@@ -2,8 +2,10 @@
 import { FaArrowLeft, FaCalendarAlt, FaChartLine, FaPenAlt, FaClock } from "react-icons/fa";
 import MagicButton from "@/components/ui/MagicButton";
 import { useRouter } from "next/navigation";
+import blogData from '../../../data/blog-data.json';
 
 type BlogPost = {
+  id: string;
   title: string;
   excerpt: string;
   stats: {
@@ -15,71 +17,19 @@ type BlogPost = {
   readTime: string;
   author: string;
   featured?: boolean;
+  sections?: {
+    title: string;
+    content: string[];
+  }[];
 };
 
 export default function BlogDetails({ params }: { params: { slug: string } }) {
   const router = useRouter();
 
-  // Blog post data for details page
-  const blogData: Record<string, BlogPost> = {
-    "maximizing-lead-conversion-in-financial-services": {
-      title: "Maximizing Lead Conversion in Financial Services",
-      excerpt: "Proven strategies to boost your MCA financing conversion rates beyond 90%",
-      stats: [
-        { value: "12K", label: "Views" },
-        { value: "94%", label: "Engagement" }
-      ],
-      content: [
-        "In the competitive world of merchant cash advances, standing out requires more than just competitive rates. After six years of refining our approach, we've developed a system that consistently delivers conversion rates above 90%. Here's how we do it.",
-        "First, we focus on precise targeting. Rather than casting a wide net, we use industry-specific criteria to identify businesses that are most likely to benefit from our services. This includes analyzing credit card processing volumes, business longevity, and industry trends.",
-        "Our application process is designed for speed and simplicity. We've reduced the paperwork to just three essential documents, and our automated underwriting system can provide preliminary approval within 2 hours of receiving a complete application.",
-        "Perhaps most importantly, we've developed a consultative sales approach. Rather than pushing products, our specialists work to understand each business's unique cash flow challenges and tailor solutions accordingly. This builds trust and dramatically improves conversion.",
-        "Finally, our post-approval process ensures clients understand exactly how the advance will work. We provide clear repayment schedules and maintain open communication channels throughout the relationship."
-      ],
-      date: "May 15, 2024",
-      readTime: "8 min read",
-      author: "Sarah Johnson",
-      featured: true
-    },
-    "the-future-of-solar-energy-in-australia": {
-      title: "The Future of Solar Energy in Australia",
-      excerpt: "How government initiatives are shaping the renewable energy market",
-      stats: [
-        { value: "8.5K", label: "Views" },
-        { value: "78%", label: "Engagement" }
-      ],
-      content: [
-        "Australia's solar energy sector is undergoing a transformation, driven by ambitious government targets and innovative financing models. The current administration has committed to making renewable energy 82% of the national grid by 2030, creating unprecedented opportunities for commercial solar providers.",
-        "The most significant development has been the expansion of the Small-scale Renewable Energy Scheme (SRES) to include medium-sized commercial installations. This change has opened the market to businesses with energy needs between 100kW and 1MW - a sweet spot for many manufacturing facilities and retail chains.",
-        "We've found success by focusing on three key areas: First, educating business owners about the long-term cost savings. Our proprietary modeling software can project 10-year savings with remarkable accuracy, making the ROI case compelling.",
-        "Second, we've streamlined the approval and installation process. By working closely with local governments and utilities, we've reduced the typical project timeline from 6 months to just 90 days.",
-        "Finally, we offer flexible financing options that align with business cash flows. Our power purchase agreements (PPAs) allow businesses to install solar with no upfront cost, paying only for the energy they use at rates below grid prices."
-      ],
-      date: "April 28, 2024",
-      readTime: "6 min read",
-      author: "Michael Chen"
-    },
-    "energy-efficiency-programs-that-work": {
-      title: "Energy Efficiency Programs That Work",
-      excerpt: "Case studies from successful LED lighting and exhaust fan campaigns",
-      stats: [
-        { value: "6.2K", label: "Views" },
-        { value: "82%", label: "Engagement" }
-      ],
-      content: [
-        "Energy efficiency might not be glamorous, but it delivers some of the most consistent ROI of any business upgrade. Through our work with the Australian government's energy efficiency programs, we've helped hundreds of businesses reduce their energy costs by 30-60% with simple lighting and ventilation upgrades.",
-        "The key to our success has been focusing on measurable outcomes. Before any installation, we conduct a comprehensive energy audit that establishes baseline consumption. This allows us to precisely calculate projected savings and payback periods.",
-        "For LED lighting conversions, we've developed a tiered approach that prioritizes high-usage areas first. This creates immediate savings that often fund subsequent phases of the project. Our data shows that businesses that follow this approach achieve full payback 30% faster than those that do complete conversions all at once.",
-        "With exhaust fan upgrades, we focus on both energy efficiency and performance. Modern EC motors can reduce energy consumption by up to 70% while actually improving airflow. For commercial kitchens, this means better ventilation and lower costs - a rare win-win.",
-        "The most successful implementations combine technology upgrades with operational adjustments. We provide training for staff on optimal equipment use and maintenance, ensuring the savings continue long after installation."
-      ],
-      date: "April 10, 2024",
-      readTime: "5 min read",
-      author: "David Wilson"
-    }
-  };
-
-  const post = blogData[params.slug];
+  // Find the post by converting the slug back to title format
+  const post = blogData.posts.find(post => 
+    post.title.toLowerCase().replace(/\s+/g, '-').replace(/\|/g, '').replace(/[^\w-]+/g, '') === params.slug
+  );
 
   if (!post) {
     return (
@@ -174,6 +124,20 @@ export default function BlogDetails({ params }: { params: { slug: string } }) {
                 </p>
               ))}
             </div>
+
+            {/* Sections */}
+            {post.sections?.map((section, index) => (
+              <div key={index} className="space-y-4">
+                <h2 className="text-xl sm:text-2xl font-bold mt-8 mb-4">{section.title}</h2>
+                <ul className="list-disc pl-6 space-y-2">
+                  {section.content.map((item, itemIndex) => (
+                    <li key={itemIndex} className="text-base sm:text-lg text-slate-300">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </div>
