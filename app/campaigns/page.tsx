@@ -124,7 +124,7 @@ export default function CampaignsPage() {
       
       <div className="py-6">
         <TextGenerateEffect 
-          words="My Campaign Portfolio" 
+          words="Campaign Portfolio" 
           className="text-center text-2xl sm:text-3xl md:text-4xl font-bold"
         />
         <div className="mt-6">
