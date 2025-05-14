@@ -1,6 +1,122 @@
 // Add this to your Hero component (or create a new section component)
 import React from 'react';
 import Image from 'next/image';
+import SectionCarousel from "./ui/SectionCarousel";
+
+const carouselSections = [
+  {
+    id: "1",
+    title: "Benefits of BPO Services",
+    subtitle: "Transforming business communication into measurable growth and success",
+    items: [
+      {
+        number: "01",
+        title: "Risk Management & Compliance",
+        description: "Mitigate business risks with expert oversight"
+      },
+      {
+        number: "02",
+        title: "Expertise and Specialization",
+        description: "Leverage domain-specific knowledge"
+      },
+      {
+        number: "03",
+        title: "Operational Efficiency",
+        description: "Streamline processes for better productivity"
+      },
+      {
+        number: "04",
+        title: "Flexibility & Agility",
+        description: "Scale operations up or down as needed"
+      },
+      {
+        number: "05",
+        title: "Cost Savings",
+        description: "Reduce overhead while maintaining quality"
+      },
+      {
+        number: "06",
+        title: "Strategic Partnerships",
+        description: "Align with experts who understand your goals"
+      }
+    ],
+    bannerImage: "/bpo-services-benefits.jpg",
+    themeColor: "blue"
+  },
+  {
+    id: "2",
+    title: "The Power of the Phone Call",
+    subtitle: "Harnessing direct communication for maximum business impact",
+    items: [
+      {
+        icon: "⏱️",
+        title: "Immediate Response",
+        description: "Real-time engagement with potential customers"
+      },
+      {
+        icon: "🤝",
+        title: "Personal Touch",
+        description: "Customized communication for each client"
+      },
+      {
+        icon: "❓",
+        title: "Clarification",
+        description: "Instant answers to customer questions"
+      },
+      {
+        icon: "✅",
+        title: "Problem-Solving",
+        description: "Quick resolution of customer issues"
+      },
+      {
+        icon: "💎",
+        title: "Relationships",
+        description: "Building long-term customer connections"
+      }
+    ],
+    bannerImage: "/power-of-call-banner.jpg",
+    themeColor: "purple"
+  },
+  {
+    id: "3",
+    title: "Advantages of the BPO Industry",
+    subtitle: "Why outsourcing is the smart choice for growing businesses",
+    items: [
+      {
+        icon: "💰",
+        title: "Cost Reduction",
+        description: "Significant savings on operational expenses"
+      },
+      {
+        icon: "👥",
+        title: "Employment Opportunities",
+        description: "Creates jobs and develops skilled workforce"
+      },
+      {
+        icon: "🖥️",
+        title: "Latest Technologies",
+        description: "Access to cutting-edge tools and infrastructure"
+      },
+      {
+        icon: "🎓",
+        title: "Experienced Professionals",
+        description: "Skilled teams with specialized knowledge"
+      },
+      {
+        icon: "🎯",
+        title: "Focus on Core Business",
+        description: "Free up resources for strategic initiatives"
+      },
+      {
+        icon: "📊",
+        title: "Customer Feedback",
+        description: "Valuable insights to improve your offerings"
+      }
+    ],
+    bannerImage: "/bpo-advantages-banner.jpg",
+    themeColor: "indigo"
+  }
+];
 
 const BPOBenefitsSection = () => {
   return (
@@ -13,14 +129,14 @@ const BPOBenefitsSection = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        {/* <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             The Power of BPO & Telemarketing
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Transforming business communication into measurable growth and success
           </p>
-        </div>
+        </div> */}
 
         {/* Phone Call Benefits - Horizontal Cards */}
         {/* <div className="mb-20">
@@ -136,7 +252,7 @@ const BPOBenefitsSection = () => {
         </div> */}
 
         {/* BPO Services Benefits - Image + Text */}
-        <div className="mb-20">
+        {/* <div className="mb-20">
           <h3 className="text-2xl font-bold text-white mb-8 text-center">
             Benefits of BPO Services
           </h3>
@@ -176,7 +292,10 @@ const BPOBenefitsSection = () => {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
+
+        {/* Replace BPOBenefitsSection with: */}
+        <SectionCarousel sections={carouselSections} />
 
         {/* Conversion Section - Full Width */}
         {/* <div className="relative rounded-2xl overflow-hidden h-96">
