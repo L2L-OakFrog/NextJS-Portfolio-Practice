@@ -135,7 +135,7 @@ export default function CampaignsPage() {
                 }}
               >
                 <motion.div 
-                  className="flex flex-col h-full p-4"
+                  className="flex flex-col h-full py-4"
                   whileHover={{ y: -5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
