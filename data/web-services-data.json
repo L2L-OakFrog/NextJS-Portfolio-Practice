@@ -1,0 +1,60 @@
+{
+  "services": [
+    {
+      "title": "Frontend Development",
+      "description": "Modern, responsive web interfaces with React, Next.js, and Tailwind CSS",
+      "icon": "frontend",
+      "items": [
+        "React.js & Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Responsive Design",
+        "Performance Optimization"
+      ],
+      "className": "bg-gradient-to-br from-blue-900 to-blue-700 md:col-span-1 col-span-3"
+    },
+    {
+      "title": "Backend Development",
+      "description": "Scalable server-side solutions with robust APIs and databases",
+      "icon": "backend",
+      "items": [
+        "Node.js & Express",
+        "Python & Django",
+        "REST & GraphQL APIs",
+        "PostgreSQL & MongoDB",
+        "Authentication",
+        "Server Deployment"
+      ],
+      "className": "bg-gradient-to-br from-purple-900 to-purple-700 md:col-span-1 col-span-3"
+    },
+    {
+      "title": "Testing & QA",
+      "description": "Comprehensive testing solutions for reliable applications",
+      "icon": "testing",
+      "items": [
+        "Unit Testing",
+        "Integration Testing",
+        "E2E Testing",
+        "Jest & Cypress",
+        "CI/CD Pipelines",
+        "Performance Testing"
+      ],
+      "className": "bg-gradient-to-br from-green-900 to-green-700 md:col-span-1 col-span-3"
+    },
+    {
+      "title": "SEO Optimization",
+      "description": "Improve visibility and ranking on search engines",
+      "icon": "seo",
+      "items": [
+        "Technical SEO",
+        "Content Optimization",
+        "Keyword Research",
+        "Page Speed",
+        "Structured Data",
+        "Analytics"
+      ],
+      "className": "bg-gradient-to-br from-yellow-900 to-yellow-700 md:col-span-1 col-span-3"
+    }
+  ]
+}

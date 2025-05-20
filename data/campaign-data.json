@@ -27,7 +27,7 @@
       "description": "Central AC cleaning campaign with rapid results",
       "stats": [
         { "value": "3-4", "label": "Sales/Day" },
-        { "value": "1wk", "label": "First Results" }
+        { "value": "1k", "label": "First Results" }
       ],
       "overview": "Specialized campaign targeting homeowners with central air conditioning systems in need of cleaning and maintenance. Focused on health benefits and energy efficiency improvements.",
       "strategies": [
