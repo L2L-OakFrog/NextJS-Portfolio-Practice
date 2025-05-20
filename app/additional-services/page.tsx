@@ -11,7 +11,7 @@ export default function AdditionalServicesPage() {
     {
       title: "Web Services",
       description: "Comprehensive web development solutions",
-      icon: <FiLayers size={24} />,
+      icon: <FaCode size={24} />,
       link: "/additional-services/web-services"
     },
     {

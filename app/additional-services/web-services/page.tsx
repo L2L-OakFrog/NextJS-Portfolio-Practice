@@ -27,8 +27,8 @@ export default function WebServicesPage() {
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
           />
           <p className="text-lg text-neutral-400 max-w-3xl mx-auto">
-            Comprehensive web solutions tailored to your business needs. From frontend to backend, 
-            testing to SEO - we've got you covered.
+            Comprehensive web solutions tailored to your business needs. From Frontend to Backend, 
+            Testing to SEO - we&apos;ve got you covered.
           </p>
         </div>
 
