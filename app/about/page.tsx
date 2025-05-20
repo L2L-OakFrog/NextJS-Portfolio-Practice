@@ -9,10 +9,10 @@ import { useRouter } from "next/navigation";
 import MagicButton from "@/components/ui/MagicButton";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { BentoGrid } from "@/components/ui/BentoGrid2";
-import VideoGallery from "@/components/ui/VideoGallery";
 import { BentoGridItem } from "@/components/ui/BentoGridItem";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 import { FaCommentAlt, FaLightbulb, FaChartLine, FaHandshake, FaUsers, FaBullseye, FaEye } from "react-icons/fa";
+import aboutData from "@/data/aboutData.json";
 
 const GlobeDemo = dynamic(
   () => import("@/components/ui/GridGlobe").then((mod) => mod.GlobeDemo as React.ComponentType<any>),
@@ -34,26 +34,12 @@ type AboutItem = {
   header?: React.ReactNode;
   children?: React.ReactNode;
   minHeight?: string;
+  contentType: string;
 };
 
 export default function AboutPage() {
   const router = useRouter();
   
-  // Professional image URLs from Unsplash
-  const IMAGES = {
-    TEAM: '/TEAM.avif',
-    VISION: '/VISION.avif',
-    MISSION: '/MISSION.avif',
-    OFFICE: '/OFFICE.avif',
-    GROWTH: '/GROWTH.avif',
-    MODERN: '/MODERN.avif',
-    GlobalNetwork: '/GlobalNetwork.avif',
-    Innovation: '/Innovation.avif',
-    CONVERSION_GRAPH: '/conversion-graph.jpg',
-    SALES_GROWTH: '/sales-growth-chart.jpg',
-    POWER_OF_CALL: '/power-of-call-banner.jpg'
-  };
-
   const ValueCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
     <motion.div 
       className="bg-gradient-to-br from-black/30 to-black/20 p-4 rounded-xl border border-white/10 backdrop-blur-sm"
@@ -68,115 +54,72 @@ export default function AboutPage() {
     </motion.div>
   );
 
-  const aboutItems: AboutItem[] = [
-    // Combined About Section
-    {
-      title: "",
-      description: "",
-      className: "md:col-span-4 col-span-4",
-      style: {
-        background: `linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.9)), url(${IMAGES.TEAM})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      },
-      minHeight: "min-h-[32rem]",
-      children: (
-        <div className="flex flex-col md:flex-row h-full gap-6 p-6">
-          {/* Left Column - Our Journey (shows second on mobile) */}
-          <div className="w-full md:w-1/3 flex flex-col gap-6">
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Who We Are</h2>
-              <p className="text-sm mb-6">
-                Dialers Hub is a premier telemarketing agency specializing in high-conversion lead generation 
-                strategies. Since 2015, we&apos;ve helped businesses worldwide achieve 
-                their growth objectives through data-driven outreach.
-              </p>
-            </div>
+  const renderContent = (item: AboutItem) => {
+    switch(item.contentType) {
+      case 'combinedAbout':
+        return (
+          <div className="flex flex-col md:flex-row h-full gap-6 p-6">
+            <div className="w-full md:w-1/3 flex flex-col gap-6">
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Who We Are</h2>
+                <p className="text-sm mb-6">
+                  Dialers Hub is a premier telemarketing agency specializing in high-conversion lead generation 
+                  strategies. Since 2015, we&apos;ve helped businesses worldwide achieve 
+                  their growth objectives through data-driven outreach.
+                </p>
+              </div>
 
-            <div>
-              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <FaChartLine className="text-blue-300" />
-                Our Core Values
-              </h3>
-              <div className="grid grid-cols-1 gap-3">
-                <ValueCard 
-                  icon={<IoMdRocket />}
-                  title="Efficiency"
-                  description="Optimized processes for maximum results"
-                />
-                <ValueCard 
-                  icon={<FaLightbulb />}
-                  title="Innovation"
-                  description="Cutting-edge technology solutions"
-                />
-                <ValueCard 
-                  icon={<FaUsers />}
-                  title="Customer Focus"
-                  description="Tailored solutions for each client"
-                />
-                <ValueCard 
-                  icon={<FaChartLine />}
-                  title="Transparency"
-                  description="Clear reporting and honest communication"
-                />
+              <div>
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <FaChartLine className="text-blue-300" />
+                  Our Core Values
+                </h3>
+                <div className="grid grid-cols-1 gap-3">
+                  {aboutData.coreValues.map((value, index) => (
+                    <ValueCard 
+                      key={index}
+                      icon={value.icon === 'IoMdRocket' ? <IoMdRocket /> : 
+                           value.icon === 'FaLightbulb' ? <FaLightbulb /> :
+                           value.icon === 'FaUsers' ? <FaUsers /> :
+                           <FaChartLine />}
+                      title={value.title}
+                      description={value.description}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column - About & Core Values (shows first on mobile) */}
-          <div className="w-full md:w-2/3">
-            <h2 className="text-2xl font-bold mb-6">Our Journey</h2>
-            
-            <div className="space-y-6">
-              {/* 2015 */}
-              <motion.div 
-                className="bg-black/30 p-5 rounded-xl border border-white/10"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <FaLightbulb className="text-yellow-400" />
-                  <h4 className="font-bold">Founded in 2015</h4>
-                </div>
-                <p className="text-sm mb-4">
-                  Started with a small team of passionate telemarketing professionals.
-                </p>
-                <div className="relative h-40 rounded-lg overflow-hidden">
-                  <Image 
-                    src={IMAGES.OFFICE}
-                    alt="Early office"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              </motion.div>
-
-              {/* Growth */}
-              <motion.div 
-                className="bg-black/30 p-5 rounded-xl border border-white/10"
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <GiGrowth className="text-green-400" />
-                  <h4 className="font-bold">Rapid Growth</h4>
-                </div>
-                <p className="text-sm mb-4">
-                  Expanded to serve 450+ clients across multiple industries.
-                </p>
-                <div className="relative h-40 rounded-lg overflow-hidden">
-                  <Image 
-                    src={IMAGES.GROWTH}
-                    alt="Team growth"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              </motion.div>
-
-              {/* Today & Beyond */}
+            <div className="w-full md:w-2/3">
+              <h2 className="text-2xl font-bold mb-6">Our Journey</h2>
+              
+              <div className="space-y-6">
+                {aboutData.journey.map((journeyItem, index) => (
+                  <motion.div 
+                    key={index}
+                    className="bg-black/30 p-5 rounded-xl border border-white/10"
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      {journeyItem.icon === 'FaLightbulb' ? 
+                        <FaLightbulb className="text-yellow-400" /> : 
+                        <GiGrowth className="text-green-400" />}
+                      <h4 className="font-bold">{journeyItem.title}</h4>
+                    </div>
+                    <p className="text-sm mb-4">{journeyItem.description}</p>
+                    <div className="relative h-40 rounded-lg overflow-hidden">
+                      <Image 
+                        src={journeyItem.image}
+                        alt={journeyItem.title}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+                {/* Today & Beyond */}
               {/* <motion.div 
                 className="bg-black/30 p-5 rounded-xl border border-white/10"
                 initial={{ opacity: 0, y: 20 }}
@@ -231,167 +174,118 @@ export default function AboutPage() {
                   </div>
                 </div>
               </motion.div> */}
+              </div>
             </div>
           </div>
-        </div>
-      ),
-    },
-
-    // Vision Section
-    {
-      title: "Our Vision",
-      description: "Redefining telemarketing excellence globally",
-      className: "md:col-span-2 col-span-3",
-      style: {
-        background: `linear-gradient(135deg, rgba(30, 64, 175, 0.8) 0%, rgba(124, 58, 237, 0.8) 100%), url(${IMAGES.VISION})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      },
-      minHeight: "min-h-[24rem]",
-      children: (
-        <div className="relative h-full overflow-hidden rounded-xl">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/40 z-1"></div>
-          
-          <div className="relative z-10 h-full flex flex-col p-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-6"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-blue-500/20 rounded-full">
-                  <FaEye className="text-yellow-300 text-xl" />
-                </div>
-                <h3 className="text-xl font-bold">Vision Statement</h3>
-              </div>
-              <p className="text-sm md:text-base backdrop-blur-sm bg-black/30 p-4 rounded-lg">
-                Our vision at Dialers Hub is to become a global leader in telemarketing and lead conversion services, 
-                renowned for our excellence, reliability, and innovation.
-              </p>
-            </motion.div>
-
-            <div className="mt-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
+        );
+      
+      case 'vision':
+        return (
+          <div className="relative h-full overflow-hidden rounded-xl">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/40 z-1"></div>
+            
+            <div className="relative z-10 h-full flex flex-col p-6">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-                className="bg-black/50 p-3 rounded-lg border border-white/10 backdrop-blur-sm"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-6"
               >
-                <div className="relative h-24 mb-2 rounded-md overflow-hidden">
-                  <Image 
-                    src={IMAGES.GlobalNetwork}
-                    alt="Global network"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-                <h4 className="font-medium text-blue-300">Global Leadership</h4>
-                <p className="text-xs">Expanding to 25+ countries</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-                className="bg-black/50 p-3 rounded-lg border border-white/10 backdrop-blur-sm"
-              >
-                <div className="relative h-24 mb-2 rounded-md overflow-hidden">
-                  <Image 
-                    src={IMAGES.Innovation}
-                    alt="Innovation"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-                <h4 className="font-medium text-blue-300">Innovation</h4>
-                <p className="text-xs">AI-powered solutions</p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-
-    // Mission Section
-    {
-      title: "Our Mission",
-      description: "Empowering businesses through exceptional telemarketing",
-      className: "md:col-span-2 col-span-3",
-      style: {
-        background: `linear-gradient(135deg, rgba(6, 95, 70, 0.8) 0%, rgba(13, 148, 136, 0.8) 100%), url(${IMAGES.MISSION})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      },
-      minHeight: "min-h-[24rem]",
-      children: (
-        <div className="relative h-full overflow-hidden rounded-xl">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40 z-1"></div>
-          
-          <div className="relative z-10 h-full flex flex-col p-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-6"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-teal-500/20 rounded-full">
-                  <FaBullseye className="text-blue-300 text-xl" />
-                </div>
-                <h3 className="text-xl font-bold">Mission Statement</h3>
-              </div>
-              <p className="text-sm md:text-base backdrop-blur-sm bg-black/30 p-4 rounded-lg">
-                At Dialers Hub, our mission is to empower businesses with seamless telemarketing 
-                services that drive measurable results through tailored strategies.
-              </p>
-            </motion.div>
-
-            <div className="mt-auto">
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="bg-black/50 p-4 rounded-lg border border-white/10 backdrop-blur-sm"
-              >
-                <div className="flex flex-col md:flex-row gap-4">
-                  <div className="relative h-32 md:h-auto md:w-1/3 rounded-md overflow-hidden">
-                    <Image 
-                      src={IMAGES.OFFICE}
-                      alt="Team working"
-                      fill
-                      className="object-cover"
-                      priority
-                    />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-blue-500/20 rounded-full">
+                    <FaEye className="text-yellow-300 text-xl" />
                   </div>
-                  <div className="md:w-2/3">
-                    <h4 className="font-bold text-green-300 mb-2">Our Approach</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="bg-green-900/20 p-2 rounded">
-                        <p className="text-xs font-medium">Data-Driven</p>
-                      </div>
-                      <div className="bg-green-900/20 p-2 rounded">
-                        <p className="text-xs font-medium">Client-Focused</p>
-                      </div>
-                      <div className="bg-green-900/20 p-2 rounded">
-                        <p className="text-xs font-medium">Results-Oriented</p>
-                      </div>
-                      <div className="bg-green-900/20 p-2 rounded">
-                        <p className="text-xs font-medium break-all">Transparent</p>
+                  <h3 className="text-xl font-bold">Vision Statement</h3>
+                </div>
+                <p className="text-sm md:text-base backdrop-blur-sm bg-black/30 p-4 rounded-lg">
+                  {aboutData.visionDetails.statement}
+                </p>
+              </motion.div>
+
+              <div className="mt-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {aboutData.visionDetails.highlights.map((highlight, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 + (index * 0.1) }}
+                    className="bg-black/50 p-3 rounded-lg border border-white/10 backdrop-blur-sm"
+                  >
+                    <div className="relative h-24 mb-2 rounded-md overflow-hidden">
+                      <Image 
+                        src={highlight.image}
+                        alt={highlight.title}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
+                    <h4 className="font-medium text-blue-300">{highlight.title}</h4>
+                    <p className="text-xs">{highlight.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      
+      case 'mission':
+        return (
+          <div className="relative h-full overflow-hidden rounded-xl">
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40 z-1"></div>
+            
+            <div className="relative z-10 h-full flex flex-col p-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-6"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-teal-500/20 rounded-full">
+                    <FaBullseye className="text-blue-300 text-xl" />
+                  </div>
+                  <h3 className="text-xl font-bold">Mission Statement</h3>
+                </div>
+                <p className="text-sm md:text-base backdrop-blur-sm bg-black/30 p-4 rounded-lg">
+                  {aboutData.missionDetails.statement}
+                </p>
+              </motion.div>
+
+              <div className="mt-auto">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="bg-black/50 p-4 rounded-lg border border-white/10 backdrop-blur-sm"
+                >
+                  <div className="flex flex-col md:flex-row gap-4">
+                    <div className="relative h-32 md:h-auto md:w-1/3 rounded-md overflow-hidden">
+                      <Image 
+                        src={aboutData.missionDetails.approach.image}
+                        alt="Team working"
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
+                    <div className="md:w-2/3">
+                      <h4 className="font-bold text-green-300 mb-2">Our Approach</h4>
+                      <div className="grid grid-cols-2 gap-2">
+                        {aboutData.missionDetails.approach.tags.map((tag, index) => (
+                          <div key={index} className="bg-green-900/20 p-2 rounded">
+                            <p className="text-xs font-medium">{tag}</p>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             </div>
           </div>
-        </div>
-      ),
-    },
-
-    // Video Gallery
+        );
+        // Video Gallery
     /* {
       title: "In Action",
       description: "See our work and client testimonials",
@@ -402,65 +296,47 @@ export default function AboutPage() {
       minHeight: "min-h-[24rem]",
       children: <VideoGallery />,
     }, */
-
-    // Global Reach
-    {
-      title: "Global Reach",
-      description: "Serving clients across 25+ countries",
-      className: "md:col-span-2 col-span-3 relative",
-      style: {
-        background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
-      },
-      minHeight: "min-h-[24rem] md:min-h-[28rem]",
-      header: (
-        <div className="absolute inset-0 z-0">
-          <GlobeDemo />
-        </div>
-      ),
-      children: (
-        <div className="relative z-10 p-6">
-          <div className="bg-black/50 rounded-lg p-4 max-w-md">
-            <h3 className="text-xl font-bold mb-3">Our Worldwide Network</h3>
-            <p className="text-sm mb-4">
-              With agents and partners across North America, Europe, and Asia, we deliver localized 
-              telemarketing solutions with global expertise.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="bg-blue-900/50 px-2 py-1 rounded text-xs">United States</span>
-              <span className="bg-blue-900/50 px-2 py-1 rounded text-xs">Canada</span>
-              <span className="bg-blue-900/50 px-2 py-1 rounded text-xs">UK</span>
+      
+      case 'globalReach':
+        return (
+          <div className="relative z-10 p-6">
+            <div className="bg-black/50 rounded-lg p-4 max-w-md">
+              <h3 className="text-xl font-bold mb-3">Our Worldwide Network</h3>
+              <p className="text-sm mb-4">
+                {aboutData.globalReachDetails.description}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {aboutData.globalReachDetails.countries.map((country, index) => (
+                  <span key={index} className="bg-blue-900/50 px-2 py-1 rounded text-xs">
+                    {country}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      ),
-    },
-
-    // Get Started
-    {
-      title: "Ready to Grow?",
-      description: "Let's start a conversation about your needs",
-      className: "md:col-span-1 col-span-3",
-      style: {
-        background: "linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%)",
-      },
-      minHeight: "min-h-[16rem]",
-      children: (
-        <div className="flex flex-col items-center justify-center h-full p-6 text-center">
-          <FaHandshake className="text-4xl mb-4 text-white/90" />
-          <h3 className="text-xl font-bold mb-3">Partner With Us</h3>
-          <p className="text-sm mb-6">
-            Discover how our proven telemarketing solutions can drive your business growth.
-          </p>
-          <MagicButton
-            title="Contact Our Team"
-            icon={<FaCommentAlt />}
-            position="right"
-            handleClick={() => router.push('/contact')}
-          />
-        </div>
-      ),
-    },
-  ];
+        );
+      
+      case 'getStarted':
+        return (
+          <div className="flex flex-col items-center justify-center h-full p-6 text-center">
+            <FaHandshake className="text-4xl mb-4 text-white/90" />
+            <h3 className="text-xl font-bold mb-3">Partner With Us</h3>
+            <p className="text-sm mb-6">
+              Discover how our proven telemarketing solutions can drive your business growth.
+            </p>
+            <MagicButton
+              title="Contact Our Team"
+              icon={<FaCommentAlt />}
+              position="right"
+              handleClick={() => router.push('/contact')}
+            />
+          </div>
+        );
+      
+      default:
+        return null;
+    }
+  };
 
   return (
     <main className="w-full">
@@ -474,18 +350,22 @@ export default function AboutPage() {
         
         <div className="mt-6">
           <BentoGrid cols={3} gap="md">
-            {aboutItems.map((item, i) => (
+            {aboutData.aboutItems.map((item, i) => (
               <BentoGridItem
                 key={i}
                 title={item.title}
                 description={item.description}
                 className={`${item.className} ${item.minHeight}`}
                 style={item.style}
-                header={item.header}
+                header={item.contentType === 'globalReach' ? (
+                  <div className="absolute inset-0 z-0">
+                    <GlobeDemo />
+                  </div>
+                ) : undefined}
                 titleClassName="text-lg sm:text-xl"
                 descriptionClassName="md:text-lg sm:text-sm"
               >
-                {item.children}
+                {renderContent(item)}
               </BentoGridItem>
             ))}
           </BentoGrid>

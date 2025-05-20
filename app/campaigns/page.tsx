@@ -9,6 +9,7 @@ import { IoMdRocket, IoMdFlash } from "react-icons/io";
 import { GiMechanicGarage, GiWindyStripes, GiAirBalloon } from "react-icons/gi";
 import { useRouter } from "next/navigation";
 import campaignData from '../../data/campaign-data.json';
+import { motion } from "framer-motion";
 
 type CampaignStat = {
   value: string;
@@ -68,97 +69,103 @@ export default function CampaignsPage() {
           className="text-center text-2xl sm:text-3xl md:text-4xl font-bold"
         />
         <div className="mt-6">
-          <BentoGrid className="">
+          <BentoGrid cols={3} gap="md">
             {featuredCampaign && (
               <BentoGridItem
-                title={featuredCampaign.title}
-                description={featuredCampaign.description}
+                // title={featuredCampaign.title}
+                // description={featuredCampaign.description}
+                title=""
+                description=""
                 className={`${featuredCampaign.className} min-h-[20rem]`}
-                header={
-                  <div className="relative h-full">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-blue-900/50 rounded-xl md:rounded-3xl" />
-                    <div className="relative z-10 p-4 sm:p-6 h-full flex flex-col">
-                      <div className="flex items-center gap-2 mb-2">
-                        {featuredCampaign.iconComponent}
-                        <span className="px-2 py-1 bg-white/10 rounded-full text-xs">TOP PERFORMER</span>
-                      </div>
-                      <div className="flex flex-col sm:flex-row justify-between gap-4">
-                        <div className="space-y-2">
-                          <h3 className="text-xl sm:text-2xl font-bold">{featuredCampaign.title}</h3>
-                          <p className="text-sm">{featuredCampaign.description}</p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-3xl sm:text-4xl font-bold">94%</p>
-                          <p className="text-xs sm:text-sm">Conversion Rate</p>
-                        </div>
-                      </div>
-                      <div className="mt-auto grid grid-cols-3 gap-2 sm:gap-4">
-                        {featuredCampaign.stats.map((stat, index) => (
-                          <div key={index} className="bg-black/20 p-2 sm:p-3 rounded-lg">
-                            <p className="text-lg sm:text-2xl font-bold">{stat.value}</p>
-                            <p className="text-xs sm:text-sm">{stat.label}</p>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="mt-4">
-                        <MagicButton
-                          title="View Details"
-                          icon={<FaArrowRight />}
-                          position="right"
-                          otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 w-full text-sm"
-                          handleClick={() => navigateToCampaign(featuredCampaign.slug)}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                }
                 style={{
                   background: "linear-gradient(135deg, #4c1d95 0%, #701a75 100%)",
                   borderColor: "rgba(255,255,255,0.1)"
                 }}
-              />
-            )}
-
-            {regularCampaigns.map((campaign, i) => (
-              <BentoGridItem
-                key={i}
-                title=''
-                description=''
-                className=''
-                header={
-                  <div className="flex flex-col h-full p-4">
-                    <div className="flex justify-between items-start gap-2">
-                      <div className="flex-shrink-0">
-                        {campaign.iconComponent}
+              > 
+                <div className="relative h-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-blue-900/50 rounded-xl md:rounded-3xl" />
+                  <div className="relative z-10 py-4 h-full flex flex-col">
+                    <div className="flex items-center gap-2 mb-2">
+                      {featuredCampaign.iconComponent}
+                      <span className="px-2 py-1 bg-white/10 rounded-full text-xs">TOP PERFORMER</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row justify-between gap-4">
+                      <div className="space-y-2">
+                        <h3 className="text-xl sm:text-2xl font-bold">{featuredCampaign.title}</h3>
+                        <p className="text-sm">{featuredCampaign.description}</p>
                       </div>
-                      <div className="flex flex-wrap gap-1 justify-end">
-                        {campaign.stats.map((stat, j) => (
-                          <div key={j} className="px-2 py-1 bg-black/30 rounded-full text-xs sm:text-sm">
-                            <span className="font-bold">{stat.value}</span> {stat.label}
-                          </div>
-                        ))}
+                      <div className="text-right">
+                        <p className="text-3xl sm:text-4xl font-bold">94%</p>
+                        <p className="text-xs sm:text-sm">Conversion Rate</p>
                       </div>
                     </div>
-                    <div className="mt-2">
-                      <h3 className="text-lg font-bold">{campaign.title}</h3>
-                      <p className="text-sm text-gray-300">{campaign.description}</p>
+                    <div className="mt-auto grid grid-cols-3 gap-2 sm:gap-4">
+                      {featuredCampaign.stats.map((stat, index) => (
+                        <div key={index} className="bg-black/20 p-2 sm:p-3 rounded-lg">
+                          <p className="text-lg sm:text-2xl font-bold">{stat.value}</p>
+                          <p className="text-xs sm:text-sm">{stat.label}</p>
+                        </div>
+                      ))}
                     </div>
-                    <div className="mt-auto pt-4">
+                    <div className="mt-4">
                       <MagicButton
                         title="View Details"
                         icon={<FaArrowRight />}
                         position="right"
                         otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 w-full text-sm"
-                        handleClick={() => navigateToCampaign(campaign.slug)}
+                        handleClick={() => navigateToCampaign(featuredCampaign.slug)}
                       />
                     </div>
                   </div>
-                }
+                </div>
+              </BentoGridItem>
+            )}
+
+            {regularCampaigns.map((campaign, i) => (
+              <BentoGridItem
+                key={i}
+                // title={campaign.title}
+                // description={campaign.description}
+                title=""
+                description=""
+                className={campaign.className}
                 style={{
                   background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)",
                   borderColor: "rgba(255,255,255,0.1)"
                 }}
-              />
+              >
+                <motion.div 
+                  className="flex flex-col h-full p-4"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="flex justify-between items-start gap-2">
+                    <div className="flex-shrink-0">
+                      {campaign.iconComponent}
+                    </div>
+                    <div className="flex flex-wrap gap-1 justify-end">
+                      {campaign.stats.map((stat, j) => (
+                        <div key={j} className="px-2 py-1 bg-black/30 rounded-full text-xs sm:text-sm">
+                          <span className="font-bold">{stat.value}</span> {stat.label}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mt-2">
+                    <h3 className="text-lg font-bold">{campaign.title}</h3>
+                    <p className="text-sm text-gray-300">{campaign.description}</p>
+                  </div>
+                  <div className="mt-auto pt-4">
+                    <MagicButton
+                      title="View Details"
+                      icon={<FaArrowRight />}
+                      position="right"
+                      otherClasses="bg-[#161A31] hover:bg-[#161A31]/80 w-full text-sm"
+                      handleClick={() => navigateToCampaign(campaign.slug)}
+                    />
+                  </div>
+                </motion.div>
+              </BentoGridItem>
             ))}
           </BentoGrid>
         </div>

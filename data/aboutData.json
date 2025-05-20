@@ -1,0 +1,137 @@
+{
+  "images": {
+    "TEAM": "/TEAM.avif",
+    "VISION": "/VISION.avif",
+    "MISSION": "/MISSION.avif",
+    "OFFICE": "/OFFICE.avif",
+    "GROWTH": "/GROWTH.avif",
+    "MODERN": "/MODERN.avif",
+    "GlobalNetwork": "/GlobalNetwork.avif",
+    "Innovation": "/Innovation.avif",
+    "CONVERSION_GRAPH": "/conversion-graph.jpg",
+    "SALES_GROWTH": "/sales-growth-chart.jpg",
+    "POWER_OF_CALL": "/power-of-call-banner.jpg"
+  },
+  "aboutItems": [
+    {
+      "title": "",
+      "description": "",
+      "className": "md:col-span-4 col-span-4",
+      "style": {
+        "background": "linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.9)), url(/TEAM.avif)",
+        "backgroundSize": "cover",
+        "backgroundPosition": "center"
+      },
+      "minHeight": "min-h-[32rem]",
+      "contentType": "combinedAbout"
+    },
+    {
+      "title": "Our Vision",
+      "description": "Redefining telemarketing excellence globally",
+      "className": "md:col-span-2 col-span-3",
+      "style": {
+        "background": "linear-gradient(135deg, rgba(30, 64, 175, 0.8) 0%, rgba(124, 58, 237, 0.8) 100%), url(/VISION.avif)",
+        "backgroundSize": "cover",
+        "backgroundPosition": "center"
+      },
+      "minHeight": "min-h-[24rem]",
+      "contentType": "vision"
+    },
+    {
+      "title": "Our Mission",
+      "description": "Empowering businesses through exceptional telemarketing",
+      "className": "md:col-span-2 col-span-3",
+      "style": {
+        "background": "linear-gradient(135deg, rgba(6, 95, 70, 0.8) 0%, rgba(13, 148, 136, 0.8) 100%), url(/MISSION.avif)",
+        "backgroundSize": "cover",
+        "backgroundPosition": "center"
+      },
+      "minHeight": "min-h-[24rem]",
+      "contentType": "mission"
+    },
+    {
+      "title": "Global Reach",
+      "description": "Serving clients across 25+ countries",
+      "className": "md:col-span-2 col-span-3 relative",
+      "style": {
+        "background": "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)"
+      },
+      "minHeight": "min-h-[24rem] md:min-h-[28rem]",
+      "contentType": "globalReach"
+    },
+    {
+      "title": "Ready to Grow?",
+      "description": "Let's start a conversation about your needs",
+      "className": "md:col-span-1 col-span-3",
+      "style": {
+        "background": "linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%)"
+      },
+      "minHeight": "min-h-[16rem]",
+      "contentType": "getStarted"
+    }
+  ],
+  "coreValues": [
+    {
+      "icon": "IoMdRocket",
+      "title": "Efficiency",
+      "description": "Optimized processes for maximum results"
+    },
+    {
+      "icon": "FaLightbulb",
+      "title": "Innovation",
+      "description": "Cutting-edge technology solutions"
+    },
+    {
+      "icon": "FaUsers",
+      "title": "Customer Focus",
+      "description": "Tailored solutions for each client"
+    },
+    {
+      "icon": "FaChartLine",
+      "title": "Transparency",
+      "description": "Clear reporting and honest communication"
+    }
+  ],
+  "journey": [
+    {
+      "year": "2015",
+      "icon": "FaLightbulb",
+      "title": "Founded in 2015",
+      "description": "Started with a small team of passionate telemarketing professionals.",
+      "image": "/OFFICE.avif"
+    },
+    {
+      "year": "Growth",
+      "icon": "GiGrowth",
+      "title": "Rapid Growth",
+      "description": "Expanded to serve 450+ clients across multiple industries.",
+      "image": "/GROWTH.avif"
+    }
+  ],
+  "visionDetails": {
+    "statement": "Our vision at Dialers Hub is to become a global leader in telemarketing and lead conversion services, renowned for our excellence, reliability, and innovation.",
+    "highlights": [
+      {
+        "title": "Global Leadership",
+        "description": "Expanding to 25+ countries",
+        "image": "/GlobalNetwork.avif"
+      },
+      {
+        "title": "Innovation",
+        "description": "AI-powered solutions",
+        "image": "/Innovation.avif"
+      }
+    ]
+  },
+  "missionDetails": {
+    "statement": "At Dialers Hub, our mission is to empower businesses with seamless telemarketing services that drive measurable results through tailored strategies.",
+    "approach": {
+      "image": "/OFFICE.avif",
+      "tags": ["Data-Driven", "Client-Focused", "Results-Oriented", "Transparent"]
+    }
+  },
+  "globalReachDetails": {
+    "description": "With agents and partners across North America, Europe, and Asia, we deliver localized telemarketing solutions with global expertise.",
+    "countries": ["United States", "Canada", "UK"]
+  }
+}
