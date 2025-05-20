@@ -101,7 +101,7 @@ export default function CampaignsPage() {
                     </div>
                     <div className="mt-auto grid grid-cols-3 gap-2 sm:gap-4">
                       {featuredCampaign.stats.map((stat, index) => (
-                        <div key={index} className="bg-black/20 p-2 sm:p-3 rounded-lg">
+                        <div key={index} className="bg-black/20 p-2 sm:p-3 rounded-lg break-all">
                           <p className="text-lg sm:text-2xl font-bold">{stat.value}</p>
                           <p className="text-xs sm:text-sm">{stat.label}</p>
                         </div>
