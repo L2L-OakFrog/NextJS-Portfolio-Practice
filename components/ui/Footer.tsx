@@ -33,7 +33,7 @@ export const Footer = () => {
               </div>
               <div className="flex items-start gap-3">
                 <FaEnvelope className="mt-1 flex-shrink-0" size={14} />
-                <span>sharif@dialershub.com</span>
+                <span>info@dialershub.com</span>
               </div>
             </address>
           </div>

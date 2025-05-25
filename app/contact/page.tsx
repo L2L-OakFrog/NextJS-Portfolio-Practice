@@ -97,7 +97,7 @@ export default function ContactPage() {
             <h2 className="text-2xl font-bold mb-6">Ready to Maximize Your Leads?</h2>
             
             <form 
-              action="https://formsubmit.co/sharif@dialershub.com" 
+              action="https://formsubmit.co/info@dialershub.com" 
               method="POST"
               className="space-y-6"
               onSubmit={handleSubmit}
@@ -292,10 +292,10 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-bold mb-2">Email Us</h3>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                    <p className="text-neutral-300 break-all whitespace-normal">sharif@dialershub.com</p>
+                    <p className="text-neutral-300 break-all whitespace-normal">info@dialershub.com</p>
                     <button 
                       className="text-blue-400 hover:text-blue-300 flex items-center gap-1 text-sm"
-                      onClick={() => navigator.clipboard.writeText('sharif@dialershub.com')}
+                      onClick={() => navigator.clipboard.writeText('info@dialershub.com')}
                     >
                       <IoCopyOutline /> Copy
                     </button>
