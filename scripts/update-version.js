@@ -4,6 +4,7 @@ const { execSync } = require('child_process');
 
 // Paths
 const versionHistoryPath = path.join(process.cwd(), 'data/version-history.json');
+console.log(versionHistoryPath)
 const nextConfigPath = path.join(process.cwd(), 'next.config.mjs');
 
 // Get the last commit message
@@ -19,7 +20,7 @@ function getCommitMessage() {
 function updateVersionHistory() {
   // Get current version from next.config.mjs
   const nextConfig = require(nextConfigPath);
-  const version = nextConfig.env.NEXT_PUBLIC_BUILD_VERSION;
+  const version = process.env.NEXT_PUBLIC_BUILD_VERSION;
   
   // Parse current date
   const now = new Date();
