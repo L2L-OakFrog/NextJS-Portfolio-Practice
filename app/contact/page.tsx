@@ -85,6 +85,7 @@ export default function ContactPage() {
       form.submit();
     }
   };
+  console.log(`https://formsubmit.co/${process.env.NEXT_PUBLIC_BUILD_VERSION}`)
 
   return (
     <div className="w-full">
@@ -97,7 +98,7 @@ export default function ContactPage() {
             <h2 className="text-2xl font-bold mb-6">Ready to Maximize Your Leads?</h2>
             
             <form 
-              action="https://formsubmit.co/info@dialershub.com" 
+              action={`https://formsubmit.co/${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`} 
               method="POST"
               className="space-y-6"
               onSubmit={handleSubmit}
@@ -121,7 +122,7 @@ export default function ContactPage() {
               <input 
                 type="hidden" 
                 name="_next" 
-                value="https://techconnectsolutions.netlify.app/thank-you" 
+                value={`${process.env.NEXT_PUBLIC_DOMAIN}/thank-you`}
               />
 
               <div>

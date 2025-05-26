@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/update-version.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postcommit": "node scripts/update-version.js"
   },
   "dependencies": {
     "@react-three/drei": "^9.105.6",
